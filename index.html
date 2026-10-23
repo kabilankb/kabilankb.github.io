@@ -3,550 +3,368 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kabilan KB</title>
+<meta name="description" content="Kabilan KB, roboticist: open-source robot learning pipelines from NVIDIA simulation to edge hardware.">
 <meta property="og:title" content="Kabilan KB · Robot learning, from simulation to the edge">
 <meta property="og:description" content="Open-source robot learning projects across Isaac Sim, Isaac Lab, Newton, LeRobot, GR00T, Cosmos and ASPIRE on Jetson Thor and GB10. Featured on the NVIDIA Blog.">
+<meta property="og:type" content="website">
 <meta property="og:image" content="https://kabilankb.github.io/media/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta name="theme-color" content="#0A0D0A">
-<meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kabilankb2003">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2376B900'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='900' font-size='15' text-anchor='middle' fill='%230B0F08'%3EKB%3C/text%3E%3C/svg%3E">
-<style>img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}</style>
-<title>Kabilan KB</title>
-<meta name="description" content="Kabilan KB: open-source robot learning projects from simulation to NVIDIA edge hardware.">
+<meta name="theme-color" content="#F6F4EE">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231C1D19'/%3E%3Ctext x='16' y='22.5' font-family='Georgia,serif' font-size='17' text-anchor='middle' fill='%23F6F4EE'%3EK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Instrument+Sans:wght@400;500;600&display=swap">
 <style>
-/* Layout: one spine, the sim → train → fine-tune → deploy pipeline. A 3D point field opens it,
-   a rail indexes it, the work follows it. Depth comes from the WebGL backdrop, gently tilting
-   cards and perspective reveals; everything still reads with JS off. */
+/* Editorial layout: one reading column of serif text on warm paper, with small sans-serif
+   metadata. Structure comes from rules and whitespace; colour is kept for links only. */
 :root{
-  /* Single dark theme in NVIDIA green, so the lit 3D scene blends into the page. */
-  --bg:#0A0D0A; --surface:#121712; --surface-2:#171D17; --ink:#ECF1E7; --muted:#9AA894;
-  --line:rgba(214,230,200,.10); --line-2:rgba(214,230,200,.2);
-  --green:#76B900; --accent:#9BDB2A; --accent-ink:#0B0F08; --shade:rgba(236,241,231,.06);
-  --lift:0 1px 0 rgba(255,255,255,.04) inset,0 24px 48px -24px rgba(0,0,0,.85),0 2px 6px rgba(0,0,0,.4);
-  --f-display:"Archivo","Arial Narrow",system-ui,sans-serif;
-  --f-body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
-  --wrap:1180px; color-scheme:dark;
+  --paper:#F6F4EE; --ink:#1C1D19; --muted:#63655B; --faint:#8C8E83; --rule:#D9D6CB; --well:#ECE9E1;
+  --accent:#3A660D; --mark:#76B900;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --wrap:1120px; color-scheme:light;
 }
-
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;background:var(--bg)}
+html{background:var(--paper);scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body::before{content:"";display:block;height:3px;background:var(--green)}
-body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--f-body);-webkit-font-smoothing:antialiased;overflow-x:clip}
-a{color:inherit}
-a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
-.eyebrow{font:500 .75rem/1.4 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0}
-h1,h2,h3,h4{font-family:var(--f-display);text-wrap:balance;margin:0}
-svg{width:1em;height:1em;flex:none}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 18px/1.6 var(--serif);font-optical-sizing:auto;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img,video{max-width:100%;display:block}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.18em}
+a:hover{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
+.sans{font-family:var(--sans)}
+.ext{display:inline-block;width:.62em;height:.62em;margin-left:.22em;vertical-align:.02em}
 
-/* top bar */
-.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:20px;flex-wrap:wrap;position:relative;z-index:3}
-.mark{font:800 1.05rem/1 var(--f-display);font-stretch:118%;letter-spacing:.01em;text-decoration:none}
-.mark span{color:var(--green)}
-.topnav{display:flex;gap:20px;flex-wrap:wrap;font-size:.9rem;color:var(--muted)}
-.topnav a{text-decoration:none}.topnav a:hover{color:var(--ink)}
+/* masthead */
+.mast{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;padding-block:26px 18px;border-bottom:1px solid var(--ink)}
+.mast .name{font:600 1.02rem/1 var(--sans);letter-spacing:.01em;text-decoration:none}
+.mast .name::before{content:"";display:inline-block;width:.5em;height:.5em;background:var(--mark);margin-right:.5em;vertical-align:.06em}
+.mast nav{display:flex;gap:22px;font:500 .9rem/1 var(--sans);color:var(--muted)}
+.mast nav a{text-decoration:none}
 
-/* hero: role-first copy over a full-bleed 3D point-field backdrop */
-.hero{position:relative;min-height:clamp(600px,84vh,820px);display:grid;align-items:center;isolation:isolate}
-.viewport{position:absolute;inset:-76px 0 0 0;z-index:-1;pointer-events:none;
-  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 28%,#000 80%,transparent);mask-image:linear-gradient(180deg,transparent 0,#000 28%,#000 80%,transparent)}
-.viewport::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0,rgba(10,13,10,.6) 36%,transparent 72%)}
-.viewport canvas,.viewport .poster{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover}
-.viewport canvas{opacity:0;transition:opacity 1.4s ease}
-.viewport.ready canvas{opacity:1}
-.viewport .poster{transition:opacity 1.4s ease}
-.viewport.ready .poster{opacity:0}
-.hero>.wrap{width:100%}
-.herocopy{position:relative;padding-block:24px 56px;max-width:36rem;display:grid;gap:22px}
-.role{color:var(--ink)}
-.role span{color:var(--accent)}
-.hero h1{font-weight:850;font-stretch:122%;font-size:clamp(2.6rem,6.6vw,5.6rem);line-height:.92;letter-spacing:-.025em;max-width:11ch;text-shadow:0 2px 30px rgba(10,13,10,.8)}
-.hero h1 em{font-style:normal;font-stretch:62%;font-weight:700;color:var(--accent);background:linear-gradient(transparent 72%,rgba(118,185,0,.28) 72%)}
-.hero .lede{font-size:1.1rem;max-width:52ch;margin:0;color:var(--ink);text-shadow:0 1px 18px rgba(10,13,10,.9)}
-.latest{display:inline-flex;align-items:center;gap:10px;justify-self:start;padding:7px 14px 7px 8px;border-radius:999px;border:1px solid rgba(118,185,0,.45);background:rgba(118,185,0,.1);text-decoration:none;font-size:.88rem;line-height:1.35;transition:background .2s,border-color .2s}
-.latest:hover{background:rgba(118,185,0,.18);border-color:var(--green)}
-.latest b{font:600 .68rem/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;background:var(--green);color:var(--accent-ink);padding:5px 7px;border-radius:999px;flex:none}
-.creds{display:flex;flex-wrap:wrap;gap:8px 18px;margin:0;padding:0;list-style:none;font:500 .8rem/1.4 var(--f-mono);color:var(--muted)}
-.creds li{display:flex;align-items:center;gap:8px}
-.creds li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green)}
-.ctas{display:flex;flex-wrap:wrap;gap:10px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:999px;border:1px solid var(--line-2);text-decoration:none;font-weight:600;font-size:.95rem;background:rgba(18,23,18,.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:border-color .2s,transform .2s,box-shadow .2s}
-.btn:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(0,0,0,.8)}
-.btn.primary{background:var(--green);border-color:var(--green);color:var(--accent-ink);box-shadow:0 8px 28px -8px rgba(118,185,0,.55)}
-.btn.primary:hover{border-color:var(--accent);box-shadow:0 14px 34px -10px rgba(118,185,0,.7)}
-@media (prefers-reduced-motion:reduce){.btn,.latest{transition:none}.btn:hover{transform:none}}
+/* intro */
+.intro{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);gap:40px 72px;padding-block:72px 24px;align-items:end}
+.intro h1{font-size:clamp(3rem,7.4vw,5.6rem);line-height:.95;letter-spacing:-.025em;font-weight:400}
+.intro .lede{margin-top:28px;font-size:clamp(1.3rem,2.3vw,1.7rem);line-height:1.35;max-width:26em;font-weight:350}
+.intro .more{margin-top:18px;color:var(--muted);max-width:36em}
+.facts{margin:0;font:400 .9rem/1.5 var(--sans);border-top:1px solid var(--rule)}
+.facts div{display:grid;grid-template-columns:7.5em minmax(0,1fr);gap:12px;padding:11px 0;border-bottom:1px solid var(--rule)}
+.facts dt{color:var(--faint)}
+.facts dd{margin:0}
+.facts a{text-decoration:underline;text-decoration-color:var(--rule)}
+.facts a:hover{text-decoration-color:currentColor}
 
-/* pipeline rail: the signature */
-.rail{border:1px solid var(--line-2);background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01)),var(--surface);border-radius:16px;padding:22px 22px 18px;box-shadow:var(--lift)}
-.railhead{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
-.rail ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));position:relative}
-.rail ol::before{content:"";position:absolute;left:15px;right:15px;top:15px;height:2px;
-  background:repeating-linear-gradient(90deg,var(--line-2) 0 6px,transparent 6px 10px)}
-.rail ol::after{content:"";position:absolute;left:15px;top:15px;height:2px;width:calc(100% - 30px);background:var(--green);box-shadow:0 0 12px rgba(118,185,0,.7);
-  transform-origin:left;animation:run 2.4s cubic-bezier(.6,.05,.2,1) .3s both}
-@keyframes run{from{transform:scaleX(.02)}to{transform:scaleX(1)}}
-@media (prefers-reduced-motion:reduce){.rail ol::after{animation:none}}
-.rail li{position:relative;z-index:1;min-width:0}
-.rail a{display:grid;gap:6px;text-decoration:none;padding-right:12px}
-/* nodes are lit spheres */
-.node{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font:600 .8rem/1 var(--f-mono);color:var(--accent-ink);
-  background:radial-gradient(circle at 34% 28%,#E9FFB8 0,#9BDB2A 22%,#76B900 48%,#3E6400 100%);
-  box-shadow:0 6px 14px -4px rgba(0,0,0,.8),0 0 0 4px var(--surface),0 0 18px rgba(118,185,0,.35);transition:transform .25s}
-.rail a:hover .node{transform:translateY(-3px) scale(1.08)}
-.sname{font:700 1.02rem/1.2 var(--f-display);font-stretch:105%;margin-top:6px}
-.spro{font:400 .76rem/1.4 var(--f-mono);color:var(--muted)}
-.hw{font:400 .76rem/1.5 var(--f-mono);color:var(--muted);margin:18px 0 0;padding-top:14px;border-top:1px dashed var(--line-2)}
+/* sections */
+.sec{padding-block:20px 0;border-top:1px solid var(--ink);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.75fr);gap:12px 72px;margin-bottom:8px}
+.sec h2{font-size:clamp(1.7rem,3vw,2.2rem);line-height:1.1}
+.sec p{color:var(--muted);max-width:40em;padding-top:6px}
+section{margin-bottom:96px;scroll-margin-top:16px}
 
-/* metrics */
-.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-block:56px}
-.metric{padding:22px 20px;display:grid;gap:8px;align-content:start;border:1px solid var(--line);border-radius:14px;background:linear-gradient(160deg,var(--surface-2),var(--surface));box-shadow:var(--lift)}
-.metric b{font:850 clamp(2rem,4.2vw,3.1rem)/1 var(--f-display);font-stretch:112%;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--ink)}
-.metric b small{font-size:.45em;font-weight:700;font-stretch:90%;color:var(--accent);margin-left:2px}
-.metric span{color:var(--muted);font-size:.92rem;max-width:30ch}
+/* projects: a numbered list, newest first */
+.projects{list-style:none;margin:0;padding:0;counter-reset:proj}
+.project{counter-increment:proj;display:grid;grid-template-columns:3.2rem minmax(0,1fr) minmax(0,22rem);gap:8px 40px;padding-block:36px;border-bottom:1px solid var(--rule)}
+.project::before{content:counter(proj,decimal-leading-zero);font:400 1.35rem/1.25 var(--serif);color:var(--faint);font-variant-numeric:oldstyle-nums}
+.project h3{font-size:1.5rem;line-height:1.2}
+.project h3 a{text-decoration:none}
+.project h3 a:hover{text-decoration:underline;text-decoration-thickness:1px}
+.pmeta{margin-top:6px;font:400 .86rem/1.4 var(--sans);color:var(--muted)}
+.pmeta .feat{color:var(--accent)}
+.pdesc{margin-top:14px;max-width:36em}
+.results{margin:12px 0 0;padding:0;list-style:none;max-width:36em}
+.results li{position:relative;padding-left:1.1em;margin-top:4px;font-size:.98rem;color:#34352F}
+.results li::before{content:"–";position:absolute;left:0;color:var(--faint)}
+.stack{margin-top:14px;font:400 .82rem/1.5 var(--sans);color:var(--faint)}
+.code{margin-top:10px;font:500 .86rem/1.4 var(--sans);overflow-wrap:anywhere}
+.code a{color:var(--accent);text-decoration:none}
+.code a:hover{text-decoration:underline}
+.thumb{margin:4px 0 0}
+.thumb img,.thumb video{width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--well);border:1px solid var(--rule)}
+.thumb figcaption{margin-top:6px;font:400 .78rem/1.4 var(--sans);color:var(--faint)}
 
-/* section headings */
-.sechead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:24px 40px;align-items:end;margin-bottom:28px}
-.sechead h2{font-weight:800;font-stretch:115%;font-size:clamp(1.9rem,4vw,3rem);line-height:1;letter-spacing:-.02em}
-.sechead p{margin:0;color:var(--muted);max-width:58ch}
+/* press + recognition */
+.press{list-style:none;margin:0;padding:0}
+.press li{border-bottom:1px solid var(--rule)}
+.press a,.press .row{display:grid;grid-template-columns:7rem minmax(0,1fr) 9rem;gap:8px 40px;padding-block:22px;text-decoration:none;align-items:start}
+.press .when{font:400 .86rem/1.6 var(--sans);color:var(--faint)}
+.press .src{font:500 .86rem/1.4 var(--sans);color:var(--muted)}
+.press h3{font-size:1.3rem;line-height:1.25;margin-top:2px}
+.press a:hover h3{text-decoration:underline;text-decoration-thickness:1px}
+.press .blurb{margin-top:6px;color:var(--muted);font-size:.98rem;max-width:40em}
+.press img{width:100%;aspect-ratio:3/2;object-fit:cover;border:1px solid var(--rule);background:var(--well)}
+.press .row h3,.press .noimg h3{font-size:1.15rem}
+.press .noimg{grid-template-columns:7rem minmax(0,1fr) 9rem}
 
-/* cards share a lit surface and tilt toward the pointer (JS adds .tilt) */
-.pcard,.rcard,.proj{position:relative;background:linear-gradient(165deg,var(--surface-2),var(--surface) 60%);border:1px solid var(--line);box-shadow:var(--lift)}
-.tilt{transform:perspective(1200px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .6s cubic-bezier(.2,.7,.2,1),border-color .2s,opacity .8s ease,translate .8s cubic-bezier(.2,.7,.2,1),rotate .8s cubic-bezier(.2,.7,.2,1)}
-.js .tilt.tilting{transition:transform .1s linear,border-color .2s,opacity .8s ease,translate .8s cubic-bezier(.2,.7,.2,1),rotate .8s cubic-bezier(.2,.7,.2,1)}
-.tilt::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s;
-  background:radial-gradient(520px circle at var(--gx,50%) var(--gy,50%),rgba(220,255,160,.09),transparent 45%)}
-.tilt.tilting::after{opacity:1}
+/* about + contact: heading left, content right */
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.75fr);gap:28px 72px;padding-top:20px;border-top:1px solid var(--ink)}
+.split h2{font-size:clamp(1.7rem,3vw,2.2rem);line-height:1.1}
+.bio{max-width:36em;padding-top:6px}
+.bio p+p{margin-top:16px}
+.kit{margin:28px 0 0;font:400 .88rem/1.55 var(--sans)}
+.kit div{padding:12px 0;border-top:1px solid var(--rule)}
+.kit dt{color:var(--faint)}
+.kit dd{margin:2px 0 0}
+.contact{padding-top:6px}
+.contact h3{font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.1;font-weight:400}
+.contact p{margin-top:14px;color:var(--muted);max-width:32em}
+.contact ul{list-style:none;margin:28px 0 0;padding:0;font:400 1.02rem/1.4 var(--sans)}
+.contact li{display:grid;grid-template-columns:7.5em minmax(0,1fr);gap:12px;padding:13px 0;border-bottom:1px solid var(--rule)}
+.contact li:first-child{border-top:1px solid var(--rule)}
+.contact li span{color:var(--faint);font-size:.9rem}
+.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:22px 40px;border-top:1px solid var(--ink);font:400 .82rem/1.4 var(--sans);color:var(--faint)}
 
-/* recognition */
-.recog{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-bottom:96px;perspective:1400px}
-.rcard{display:grid;grid-template-rows:auto 1fr;border-radius:16px;text-decoration:none;overflow:hidden}
-.rcard:hover,.pcard:hover,.proj:hover{border-color:rgba(118,185,0,.55)}
-.rcard figure{margin:0;height:248px;display:grid;place-items:center;perspective:900px;border-bottom:1px solid var(--line);
-  background:radial-gradient(ellipse 70% 60% at 50% 100%,rgba(118,185,0,.22),transparent 70%),linear-gradient(180deg,#0E120E,#151B15)}
-/* each screenshot stands on the card like a printed card turned toward you */
-.rcard img{height:206px;width:auto;max-width:86%;object-fit:cover;object-position:top;border-radius:10px;transform:rotateY(-9deg) rotateX(4deg);
-  box-shadow:-18px 30px 40px -14px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.08);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
-.rcard:hover img{transform:rotateY(0) rotateX(0) translateZ(30px)}
-.rcard>div{display:grid;gap:8px;align-content:start;min-width:0;padding:18px 20px 20px}
-.rcard h3{font-size:1.3rem;font-weight:750;font-stretch:108%;line-height:1.15}
-.rcard p{margin:0;color:var(--muted);font-size:.95rem}
-.rcard .go,.pcard .go{display:inline-flex;align-items:center;gap:6px;font:500 .8rem/1.4 var(--f-mono);color:var(--accent);margin-top:4px;overflow-wrap:anywhere}
-
-/* press */
-.press{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-bottom:20px;perspective:1400px}
-.pcard{display:grid;grid-template-rows:auto 1fr;border-radius:18px;overflow:hidden;text-decoration:none}
-.pcard figure{margin:0;aspect-ratio:16/9;overflow:hidden;border-bottom:3px solid var(--green);max-width:100%}
-.pcard img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
-.pcard:hover img{transform:scale(1.04)}
-.pcard .pc{display:grid;gap:10px;padding:20px 22px 22px;align-content:start;min-width:0}
-.pcard h3{font-size:1.4rem;font-weight:750;font-stretch:106%;line-height:1.15}
-.pcard p{margin:0;color:var(--muted);font-size:.95rem;max-width:58ch}
-.pcard .src{font:500 .74rem/1.4 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
-.pcard .tags,.stack{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:2px 0 0;padding:0}
-.pcard .tags li,.stack li{font:400 .74rem/1 var(--f-mono);padding:6px 8px;border-radius:6px;background:var(--shade);border:1px solid var(--line);color:var(--muted)}
-
-/* stages + projects */
-.work{display:grid;gap:80px}
-.stagehead{display:grid;gap:6px;padding-top:18px;border-top:1px solid var(--line-2);margin-bottom:24px}
-.stagehead h3{font-weight:800;font-stretch:112%;font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.05}
-.stagehead p:last-child{margin:0;color:var(--muted)}
-.projs{display:grid;gap:22px;perspective:1600px}
-.proj{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:28px;padding:20px;border-radius:18px;scroll-margin-top:20px;transform-style:preserve-3d}
-.shot{position:relative;margin:0;border-radius:12px;overflow:hidden;background:#0E120E;border:1px solid var(--line);aspect-ratio:16/10;align-self:start;max-width:100%;
-  box-shadow:0 18px 36px -18px rgba(0,0,0,.9);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
-.proj.tilting .shot{transform:translateZ(34px)}
-.shot img,.shot video{width:100%;height:100%;object-fit:cover;display:block}
-.shot .speed{position:absolute;right:10px;bottom:10px;font:500 .68rem/1 var(--f-mono);letter-spacing:.06em;padding:5px 7px;border-radius:6px;background:rgba(10,13,10,.7);color:var(--ink)}
-.pbody{display:grid;gap:12px;align-content:start;min-width:0}
-.pmeta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:0;font:500 .74rem/1.4 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.pnum{color:var(--accent);font-weight:500}
-.badge{color:var(--accent);display:inline-flex;align-items:center;gap:6px}
-.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green)}
-.badge.new{color:var(--accent-ink);background:var(--green);padding:3px 8px;border-radius:999px}
-.badge.new::before{display:none}
-.proj h4{font-weight:750;font-stretch:104%;font-size:1.45rem;line-height:1.15;overflow-wrap:anywhere}
-.plede{margin:0;max-width:60ch}
-.results{list-style:none;margin:0;padding:0;display:grid;gap:7px}
-.results li{position:relative;padding-left:20px;font-size:.94rem;color:var(--ink)}
-.results li::before{content:"";position:absolute;left:2px;top:.68em;width:9px;height:2px;background:var(--green)}
-.stack{margin-top:4px}
-.repo{display:inline-flex;align-items:center;gap:8px;font:500 .8rem/1.4 var(--f-mono);color:var(--accent);text-decoration:none;min-width:0;justify-self:start}
-.repo span{overflow-wrap:anywhere}
-.repo:hover span{text-decoration:underline;text-underline-offset:3px}
-
-/* contact, standing on a receding grid floor that echoes the hero viewport */
-.contact{position:relative;margin-top:110px;padding-block:56px 64px;border-top:1px solid var(--line-2);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:32px;align-items:end;isolation:isolate}
-.contact::before{content:"";position:absolute;z-index:-1;left:-16px;right:-16px;bottom:-40px;height:520px;
-  background:linear-gradient(rgba(118,185,0,.32) 1px,transparent 1px) 0 0/56px 56px,linear-gradient(90deg,rgba(118,185,0,.32) 1px,transparent 1px) 0 0/56px 56px;
-  transform:perspective(520px) rotateX(64deg);transform-origin:50% 100%;
-  -webkit-mask-image:radial-gradient(ellipse 50% 85% at 50% 100%,#000 10%,transparent 70%);mask-image:radial-gradient(ellipse 50% 85% at 50% 100%,#000 10%,transparent 70%);pointer-events:none}
-.contact h2{font-weight:850;font-stretch:120%;font-size:clamp(2rem,5vw,3.6rem);line-height:.95;letter-spacing:-.02em}
-.contact p{color:var(--muted);margin:14px 0 0;max-width:46ch}
-.handles{list-style:none;margin:0;padding:0 18px;display:grid;border-radius:16px;border:1px solid var(--line);background:rgba(18,23,18,.8);box-shadow:var(--lift)}
-.handles li+li{border-top:1px solid var(--line)}
-.handles a{display:grid;grid-template-columns:90px minmax(0,1fr) auto;gap:12px;align-items:center;padding:16px 0;text-decoration:none}
-.handles a:hover .h{color:var(--accent)}
-.handles .k{font:500 .74rem/1 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
-.handles .h{font:700 1.15rem/1.2 var(--f-display);font-stretch:105%;overflow-wrap:anywhere}
-.foot{padding-block:20px 32px;font:400 .75rem/1.5 var(--f-mono);color:var(--muted)}
-
-/* scroll reveal: rise and un-tilt into place (JS adds .js and data-reveal) */
-.js [data-reveal]{opacity:0;translate:0 34px;rotate:x 10deg;transition:opacity .8s ease,translate .8s cubic-bezier(.2,.7,.2,1),rotate .8s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1),border-color .2s}
-.js [data-reveal].in{opacity:1;translate:none;rotate:none}
-@media (prefers-reduced-motion:reduce){.js [data-reveal]{translate:none;rotate:none;transition:opacity .4s ease}.rcard img{transform:none}.pcard:hover img{transform:none}}
-
-@media (max-width:1180px){
-  .herocopy{max-width:32rem}
+@media (max-width:900px){
+  .intro,.sec,.split{grid-template-columns:minmax(0,1fr)}
+  .intro{padding-block:48px 64px;gap:36px}
+  .project{grid-template-columns:minmax(0,1fr);gap:0;padding-block:32px}
+  .project .thumb{order:-1;margin:0 0 18px}
+  .project::before{font-size:1.05rem;margin-bottom:4px}
+  .press a,.press .row{grid-template-columns:minmax(0,1fr) 7rem;gap:6px 18px}
+  .press .noimg{grid-template-columns:minmax(0,1fr)}
+  .press .when{grid-column:1/-1}
+  section{margin-bottom:72px}
 }
-@media (max-width:1000px){
-  .hero{min-height:0;display:block}
-  .viewport::after{background:linear-gradient(180deg,rgba(10,13,10,.15),rgba(10,13,10,.6))}
-  .herocopy{max-width:none;padding-block:48px 56px}
-  .sechead,.contact{grid-template-columns:minmax(0,1fr)}
-  .proj{grid-template-columns:minmax(0,1fr)}
-  .press,.recog{grid-template-columns:minmax(0,1fr)}
-  .metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:520px){
+  body{font-size:17px}
+  .press a{grid-template-columns:minmax(0,1fr)}
+  .press img{max-width:14rem}
+  .facts div,.contact li{grid-template-columns:6.5em minmax(0,1fr)}
 }
-@media (max-width:620px){
-  .rail ol{grid-template-columns:minmax(0,1fr);gap:16px}
-  .rail ol::before,.rail ol::after{left:15px;right:auto;top:15px;bottom:15px;width:2px;height:auto}
-  .rail ol::before{background:repeating-linear-gradient(180deg,var(--line-2) 0 6px,transparent 6px 10px)}
-  .rail ol::after{transform-origin:top;animation-name:rundown}
-  .rail a{grid-template-columns:32px minmax(0,1fr);column-gap:14px}
-  .sname{margin-top:5px}.spro{grid-column:2}
-  .metrics{gap:10px}.metric{padding:16px 14px}
-  .rcard figure{height:220px}.rcard img{height:180px}
-  .proj{padding:14px}
-  .handles{padding:0 14px}
-  .handles a{grid-template-columns:70px minmax(0,1fr) auto}
-}
-@keyframes rundown{from{transform:scaleY(.02)}to{transform:scaleY(1)}}
 </style>
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
-<link rel="modulepreload" href="hero3d.js">
-
 </head>
 <body>
-<header class="top wrap">
-  <a class="mark" href="#top" id="top">Kabilan<span>.</span>KB</a>
-  <nav class="topnav" aria-label="Sections">
-    <a href="#work">Work</a><a href="#recognition">Press</a><a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<section class="hero" aria-labelledby="hero-h">
-  <div class="viewport" id="viewport" aria-hidden="true">
-    <img class="poster" src="media/hero-poster.webp" alt="">
-    <canvas></canvas>
-  </div>
-
-  <div class="wrap">
-    <div class="herocopy">
-      <p class="eyebrow role">Roboticist <span>·</span> Robot learning &amp; edge AI <span>·</span> Tamil Nadu, India</p>
-      <h1 id="hero-h">From simulation <em>to the</em> edge.</h1>
-      <p class="lede">I'm Kabilan KB. I build open-source robot learning pipelines that start in an NVIDIA digital twin and end on real edge hardware: teleop rigs that collect data, RL that trains thousands of robots at once, and VLA and world models running on Jetson AGX Thor and GB10.</p>
-      <a class="latest" href="#p11"><b>Latest</b><span>ASPIRE on YAM arms: an agent writes, tests and fixes its own gear-insertion code</span></a>
-      <ul class="creds">
-        <li>Featured on the NVIDIA Blog</li>
-        <li>Jetson AI Lab Research Group core contributor</li>
-        <li>NVIDIA Omniverse Ambassador</li>
-        <li>NVIDIA DLI Ambassador</li>
-        <li>Dell Ambassador</li>
-      </ul>
-      <div class="ctas">
-        <a class="btn primary" href="https://github.com/kabilankb" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.96 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.28.82 2.15 0 3.08-1.87 3.76-3.66 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg>GitHub</a>
-        <a class="btn" href="https://www.linkedin.com/in/kabilan-kb" target="_blank" rel="noopener">LinkedIn <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
-        <a class="btn" href="https://x.com/kabilankb2003" target="_blank" rel="noopener">X <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <div class="wrap">
-  <nav class="rail" aria-label="Pipeline">
-    <div class="railhead">
-      <p class="eyebrow">One pipeline · 11 open-source projects</p>
-      <p class="eyebrow">simulate → collect → train → deploy</p>
-    </div>
-    <ol><li><a href="#simulate"><span class="node"><span>1</span></span><span class="sname">Simulate &amp; teleoperate</span><span class="spro">P01 P03 P09 P10</span></a></li><li><a href="#train"><span class="node"><span>2</span></span><span class="sname">Train with RL</span><span class="spro">P04 P07</span></a></li><li><a href="#finetune"><span class="node"><span>3</span></span><span class="sname">Learn &amp; benchmark policies</span><span class="spro">P11 P06</span></a></li><li><a href="#deploy"><span class="node"><span>4</span></span><span class="sname">Deploy on NVIDIA edge</span><span class="spro">P05 P02 P08</span></a></li></ol>
-    <p class="hw">Hardware: Jetson AGX Thor (JetPack 7) · NVIDIA GB10 Grace Blackwell, 128 GB unified memory · RTX PRO 6000 · SO-101, YAM, reBotArm B601, XLeRobot, Go2, Microduck</p>
-  </nav>
+  <header class="mast">
+    <a class="name" href="#top" id="top">Kabilan KB</a>
+    <nav aria-label="Sections"><a href="#work">Work</a><a href="#press">Press</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+  </header>
 
-  <section class="metrics" aria-label="Highlights">
-    <div class="metric"><b>4,096</b><span>robots trained in parallel on one Jetson AGX Thor; a Go2 run finishes in under 11 min</span></div>
-    <div class="metric"><b>~2<small>×</small></b><span>faster Cosmos3-Edge action chunks on Thor, 4.3 s down to ~1.5–2.1 s</span></div>
-    <div class="metric"><b>90<small>min</small></b><span>to fine-tune GR00T-N1.7 for 20k steps on a single GPU</span></div>
-    <div class="metric"><b>120</b><span>RoboLab tasks served by the Cosmos3-Nano policy on GB10</span></div>
-  </section>
-
-  <section id="recognition" aria-labelledby="rec-h">
-    <div class="sechead">
-      <h2 id="rec-h">Featured by NVIDIA</h2>
-      <p>Two features on the NVIDIA Blog, a Jetson AI Lab community project, a core contributor seat in the Jetson AI Lab Research Group, NVIDIA Omniverse and DLI Ambassador roles teaching Isaac Sim and ROS, and Dell Ambassador.</p>
+  <section class="intro" aria-labelledby="intro-h">
+    <div>
+      <h1 id="intro-h">Kabilan KB</h1>
+      <p class="lede">Roboticist building open-source robot learning pipelines that start in an NVIDIA digital twin and end on real edge hardware.</p>
+      <p class="more">Teleop rigs that collect data, reinforcement learning that trains thousands of robots at once, and vision-language-action and world models running on Jetson AGX Thor and GB10.</p>
     </div>
-    <div class="press">
-      <a class="pcard" href="https://blogs.nvidia.com/blog/kabilan-kb-autonomous-wheelchair/" target="_blank" rel="noopener">
-        <figure><img src="media/press-wheelchair.webp" alt="Kabilan KB's autonomous wheelchair in a lab doorway at Karunya Institute" loading="lazy" style="object-position:50% 70%"></figure>
-        <div class="pc">
-          <p class="src">NVIDIA Blog · Meet the Maker · Oct 3, 2023</p>
-          <h3>Autonomous wheelchair with NVIDIA Jetson</h3>
-          <p>An autonomous wheelchair for people who can't operate a manual or motorized chair. It maps the room, plans a collision-free route and drives itself to a chosen destination such as the kitchen or bedroom. Built as an undergraduate at Karunya Institute of Technology and Sciences.</p>
-          <ul class="tags"><li>Jetson Nano</li><li>ROS</li><li>YOLO</li><li>Depth + lidar</li></ul>
-          <span class="go">Read on blogs.nvidia.com <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
-        </div>
-      </a>
-      <a class="pcard" href="https://blogs.nvidia.com/blog/jetson-edge-ai-holiday-2025/" target="_blank" rel="noopener">
-        <figure><img src="media/press-forklift.webp" alt="Simulated autonomous forklift in an Isaac Sim warehouse with a ROS teleop terminal" loading="lazy" style="object-position:60% 40%"></figure>
-        <div class="pc">
-          <p class="src">NVIDIA Blog · Jetson community · Dec 4, 2025</p>
-          <h3>Photorealistic forklift automation</h3>
-          <p>A fully automated forklift built and tested in Isaac Sim, with physics-accurate wheel steering and mast lifting. Virtual cameras and lidar stream to ROS 2 for mapping, obstacle avoidance and perception testing before deployment on Jetson.</p>
-          <ul class="tags"><li>Jetson Orin Nano Super</li><li>Isaac Sim</li><li>Isaac ROS</li><li>ROS 2</li></ul>
-          <span class="go">Read on blogs.nvidia.com <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
-        </div>
-      </a>
-    </div>
-    <div class="recog">
-      <a class="rcard" href="https://www.jetson-ai-lab.com/projects" target="_blank" rel="noopener">
-        <figure><img src="media/rec-jetson.webp" alt="Jetson AI Lab community project card for Cosmos3-Edge SO-101 on Jetson Thor" loading="lazy"></figure>
-        <div>
-          <p class="eyebrow">Jetson AI Lab · Sep 19, 2026</p>
-          <h3>Featured community project</h3>
-          <p>Cosmos3-Edge SO-101 on Jetson Thor is listed on Jetson AI Lab Community Projects.</p>
-          <span class="go">jetson-ai-lab.com/projects <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
-        </div>
-      </a>
-      <a class="rcard" href="https://www.jetson-ai-lab.com/research/" target="_blank" rel="noopener">
-        <figure><img src="media/rec-research.webp" alt="Kabilan Kb's core contributor card on the Jetson AI Lab Research Group page: Roboticist, NVIDIA DLI Ambassador, Tamil Nadu" loading="lazy"></figure>
-        <div>
-          <p class="eyebrow">Jetson AI Lab · Research Group</p>
-          <h3>Core contributor</h3>
-          <p>Listed among the core contributors of the Jetson AI Lab Research Group, a global collective advancing open-source edge ML and robotics, for ROS 2 tutorials and the autonomous wheelchair.</p>
-          <span class="go">jetson-ai-lab.com/research <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
-        </div>
-      </a>
-      <a class="rcard" href="https://www.nvidia.com/en-us/omniverse/community/" target="_blank" rel="noopener">
-        <figure><img src="media/rec-omni.webp" alt="NVIDIA Omniverse community ambassador profile for Kabilan KB" loading="lazy"></figure>
-        <div>
-          <p class="eyebrow">NVIDIA Omniverse</p>
-          <h3>Omniverse Ambassador</h3>
-          <p>Listed as an NVIDIA Omniverse community Ambassador and DLI Ambassador, teaching Isaac Sim and ROS.</p>
-          <span class="go">nvidia.com/omniverse/community <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
-        </div>
-      </a>
-    </div>
+    <dl class="facts">
+      <div><dt>Based in</dt><dd>Tamil Nadu, India</dd></div>
+      <div><dt>Focus</dt><dd>Robot learning, simulation, edge AI</dd></div>
+      <div><dt>Roles</dt><dd>NVIDIA DLI and Omniverse Ambassador, Jetson AI Lab Research Group core contributor, Dell Ambassador</dd></div>
+      <div><dt>Elsewhere</dt><dd><a href="https://github.com/kabilankb" target="_blank" rel="noopener">GitHub</a>, <a href="https://www.linkedin.com/in/kabilan-kb" target="_blank" rel="noopener">LinkedIn</a>, <a href="https://x.com/kabilankb2003" target="_blank" rel="noopener">X</a></dd></div>
+      <div><dt>Latest</dt><dd><a href="#p11">ASPIRE × YAM gear assembly</a>, October 2026</dd></div>
+    </dl>
   </section>
 
   <section id="work" aria-labelledby="work-h">
-    <div class="sechead">
+    <header class="sec">
       <h2 id="work-h">Selected work</h2>
-      <p>Eleven projects, grouped by where they sit in the pipeline. Every one is open source on GitHub, with measured results.</p>
-    </div>
-    <div class="work"><section class="stage" id="simulate" aria-labelledby="simulate-h">
-  <header class="stagehead">
-    <p class="eyebrow">Stage 1 of 4</p>
-    <h3 id="simulate-h">Simulate &amp; teleoperate</h3>
-    <p>Digital twins and teleop rigs that turn real arms into training data.</p>
-  </header>
-  <div class="projs"><article class="proj" id="p01">
-  <figure class="shot"><img src="media/p01.webp" alt="YAMLab on Isaac Sim 6 with SO-101 leader-arm teleoperation screenshot" loading="lazy"></figure>
-  <div class="pbody">
-    <p class="pmeta"><span class="pnum">P01</span><span>Simulation + teleoperation</span></p>
-    <h4>YAMLab on Isaac Sim 6 with SO-101 leader-arm teleoperation</h4>
-    <p class="plede">Ported a bimanual YAM robot framework to Isaac Lab 3.0 and drove both simulated arms with real SO-101 leader arms.</p>
-    <ul class="results"><li>Two leaders drive both arms, or one leader switches between them</li><li>Teleop sessions record to HDF5 and replay into LeRobot datasets with 3 camera views</li><li>PutPotOnCooktop pick-and-place replays successfully at ~40 env-steps/s on 4 RGB envs</li></ul>
-    <ul class="stack" aria-label="Stack"><li>Isaac Sim 6.0.1</li><li>Isaac Lab 3.0</li><li>PyTorch 2.10</li><li>LeRobot</li></ul>
-    <a class="repo" href="https://github.com/kabilankb/Isaac-Lab-3-and-add-SO-101-leader-teleoperation" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.96 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.28.82 2.15 0 3.08-1.87 3.76-3.66 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg><span>github.com/kabilankb/Isaac-Lab-3-and-add-SO-101-leader-teleoperation</span></a>
-  </div>
-</article><article class="proj" id="p03">
-  <figure class="shot"><img src="media/p03.webp" alt="rebot-isaacsim-bridge screenshot" loading="lazy"></figure>
-  <div class="pbody">
-    <p class="pmeta"><span class="pnum">P03</span><span>Real-to-sim bridge</span></p>
-    <h4>rebot-isaacsim-bridge</h4>
-    <p class="plede">A real-time bridge that mirrors a real arm&#x27;s LeRobot teleop session into Isaac Sim, without touching real-arm control.</p>
-    <ul class="results"><li>Streams follower joint state every loop iteration over a simple UDP JSON protocol</li><li>Per-joint sign flips and gripper scaling match any simulated asset&#x27;s conventions</li><li>Supports Seeed reBotArm B601 follower and 102 leader; pip-installable sender</li></ul>
-    <ul class="stack" aria-label="Stack"><li>LeRobot</li><li>Isaac Sim</li><li>UDP / JSON</li><li>Seeed reBotArm B601</li></ul>
-    <a class="repo" href="https://github.com/kabilankb/rebot-isaacsim-bridge" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.96 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.28.82 2.15 0 3.08-1.87 3.76-3.66 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg><span>github.com/kabilankb/rebot-isaacsim-bridge</span></a>
-  </div>
-</article><article class="proj" id="p09">
-  <figure class="shot"><img src="media/p09.webp" alt="XLeRobot IsaacLab screenshot" loading="lazy"></figure>
-  <div class="pbody">
-    <p class="pmeta"><span class="pnum">P09</span><span>Mobile manipulation + teleoperation</span></p>
-    <h4>XLeRobot IsaacLab</h4>
-    <p class="plede">A standalone Isaac Lab extension for the XLeRobot dual-arm mobile manipulator, with keyboard and gamepad teleoperation.</p>
-    <ul class="results"><li>Three environments: ground plane, cube lifting and a loft scene</li><li>Drive the base at three speeds and control both arms and grippers from keyboard or gamepad</li><li>Runs up to 4 parallel environments; URDF and USD assets ship with the repo</li></ul>
-    <ul class="stack" aria-label="Stack"><li>Isaac Sim 4.5+</li><li>Isaac Lab</li><li>URDF / USD</li><li>Keyboard + Xbox gamepad</li></ul>
-    <a class="repo" href="https://github.com/kabilankb/xlerobot_isaaclab-" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.96 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.28.82 2.15 0 3.08-1.87 3.76-3.66 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg><span>github.com/kabilankb/xlerobot_isaaclab-</span></a>
-  </div>
-</article><article class="proj" id="p10">
-  <figure class="shot"><img src="media/p10.webp" alt="SO-101 VR Control screenshot" loading="lazy"></figure>
-  <div class="pbody">
-    <p class="pmeta"><span class="pnum">P10</span><span>VR teleoperation</span></p>
-    <h4>SO-101 VR Control</h4>
-    <p class="plede">Open-source, browser-based VR teleoperation for the SO-101 arm with a Meta Quest: one command, no app install.</p>
-    <ul class="results"><li>Hold grip and the end effector follows your hand; trigger closes the gripper</li><li>PyBullet inverse kinematics drives six STS3215 servos through LeRobot</li><li>Safety: 200°/s velocity limit, 10° per-command cap, 5° joint margins</li></ul>
-    <ul class="stack" aria-label="Stack"><li>Meta Quest</li><li>WebXR + A-Frame</li><li>WebSocket (WSS)</li><li>PyBullet IK</li><li>LeRobot</li></ul>
-    <a class="repo" href="https://github.com/kabilankb/SO-101-VR-Control" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.96 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.28.82 2.15 0 3.08-1.87 3.76-3.66 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg><span>github.com/kabilankb/SO-101-VR-Control</span></a>
-  </div>
-</article></div>
-</section><section class="stage" id="train" aria-labelledby="train-h">
-  <header class="stagehead">
-    <p class="eyebrow">Stage 2 of 4</p>
-    <h3 id="train-h">Train with RL</h3>
-    <p>Massively parallel reinforcement learning on Isaac Lab and Newton.</p>
-  </header>
-  <div class="projs"><article class="proj" id="p04">
-  <figure class="shot"><img src="media/p04.webp" alt="isaaclab_microduck screenshot" loading="lazy"></figure>
-  <div class="pbody">
-    <p class="pmeta"><span class="pnum">P04</span><span>Reinforcement learning</span></p>
-    <h4>isaaclab_microduck</h4>
-    <p class="plede">Isaac Lab 3.0 RL environments for the Microduck bipedal robot, built on Newton&#x27;s MuJoCo-Warp solver.</p>
-    <ul class="results"><li>Five tasks: locomotion, running, ball kicking, a two-robot rally and side-by-side running</li><li>A fixed 61-D observation lets ONNX policies be hot-swapped at runtime</li><li>BallKick and BallRally trained and measured; 149 CPU-only config tests</li></ul>
-    <ul class="stack" aria-label="Stack"><li>Isaac Lab 3.0</li><li>Newton (MuJoCo-Warp)</li><li>PyTorch</li><li>ONNX</li></ul>
-    <a class="repo" href="https://github.com/kabilankb/isaaclab-microduck" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.96 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.28.82 2.15 0 3.08-1.87 3.76-3.66 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg><span>github.com/kabilankb/isaaclab-microduck</span></a>
-  </div>
-</article><article class="proj" id="p07">
-  <figure class="shot"><video src="media/p07.mp4" poster="media/p07.webp" autoplay muted loop playsinline preload="metadata" aria-label="newton-claw-thor demo"></video></figure>
-  <div class="pbody">
-    <p class="pmeta"><span class="pnum">P07</span><span>On-device training + LLM agent</span></p>
-    <h4>newton-claw-thor</h4>
-    <p class="plede">Trains and runs robot policies in Newton on a single Jetson AGX Thor, driven by a local LLM agent that turns a request into one command.</p>
-    <ul class="results"><li>Go2 velocity tracking: 4,096 envs × 600 iterations in ~10 min 43 s on Thor</li><li>Trained Go2 policy fell 10 times in evaluation vs 18 for the reference policy</li><li>Local Gemma 4 agent routed 9 of 9 test prompts to the correct command</li></ul>
-    <ul class="stack" aria-label="Stack"><li>Jetson AGX Thor</li><li>Newton 1.6</li><li>rsl_rl PPO</li><li>Gemma 4 12B</li><li>Ollama</li></ul>
-    <a class="repo" href="https://github.com/kabilankb/newton-claw-thor" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.96 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.28.82 2.15 0 3.08-1.87 3.76-3.66 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg><span>github.com/kabilankb/newton-claw-thor</span></a>
-  </div>
-</article></div>
-</section><section class="stage" id="finetune" aria-labelledby="finetune-h">
-  <header class="stagehead">
-    <p class="eyebrow">Stage 3 of 4</p>
-    <h3 id="finetune-h">Learn &amp; benchmark policies</h3>
-    <p>Agent-written control code and fine-tuned VLAs, scored in simulation without a physical robot.</p>
-  </header>
-  <div class="projs"><article class="proj" id="p11">
-  <figure class="shot"><video src="media/p11.mp4" poster="media/p11.webp" autoplay muted loop playsinline preload="metadata" aria-label="ASPIRE driving the bimanual YAM arms through the gear-insertion task in Isaac Lab, 8× speed"></video><span class="speed" aria-hidden="true">8× speed</span></figure>
-  <div class="pbody">
-    <p class="pmeta"><span class="pnum">P11</span><span>Agentic code-as-policies</span><span class="badge new">New · Oct 2026</span></p>
-    <h4>ASPIRE × YAM gear assembly in Isaac Sim</h4>
-    <p class="plede">Runs NVIDIA ASPIRE on bimanual YAM arms in Isaac Lab. An AI agent writes the robot's control program in Python, runs it, reads the failures and fixes the code, then turns lessons that hold up into verified, reusable skills. The task: pick up a factory gear and seat it on the middle shaft.</p>
-    <ul class="results"><li>A bridge serves the Isaac Lab task to ASPIRE: arm commands, RGB-D cameras, seeded resets and task success</li><li>Round 1 seats the gear on 6 of 10 clean held-out seeds; a separate verifier agent confirmed all 5 new skills</li><li>Round 2&#x27;s tilted reach solves 3 of 9 far-shaft seeds, where round 1 solved none</li></ul>
-    <ul class="stack" aria-label="Stack"><li>NVIDIA ASPIRE</li><li>Isaac Sim 6</li><li>Isaac Lab 3.0</li><li>YAM bimanual</li><li>SAM3</li><li>mink IK</li></ul>
-    <a class="repo" href="https://github.com/kabilankb/aspire-yam-gear-assembly" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.96 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.28.82 2.15 0 3.08-1.87 3.76-3.66 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg><span>github.com/kabilankb/aspire-yam-gear-assembly</span></a>
-  </div>
-</article><article class="proj" id="p06">
-  <figure class="shot"><video src="media/p06.mp4" poster="media/p06.webp" autoplay muted loop playsinline preload="metadata" aria-label="SO-101 Bench × GR00T-N1.7 demo"></video></figure>
-  <div class="pbody">
-    <p class="pmeta"><span class="pnum">P06</span><span>VLA fine-tuning + benchmarking</span></p>
-    <h4>SO-101 Bench × GR00T-N1.7</h4>
-    <p class="plede">Fine-tune and evaluate GR00T-N1.7 on SO-101 Bench in an Isaac Lab digital twin, with no physical robot required.</p>
-    <ul class="results"><li>Language-conditioned tabletop suite over 56 household objects</li><li>Loss 1.114 → 0.065 over 20k steps in ~90 min on a single RTX PRO 6000</li><li>Automatic episode scoring with failure tags such as failed_grasp and wrong_object</li></ul>
-    <ul class="stack" aria-label="Stack"><li>Isaac Sim / Isaac Lab 5.1</li><li>GR00T-N1.7-3B</li><li>LeRobot</li><li>ZMQ</li></ul>
-    <a class="repo" href="https://github.com/kabilankb/so101-bench-groot-n1.7" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.96 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.28.82 2.15 0 3.08-1.87 3.76-3.66 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg><span>github.com/kabilankb/so101-bench-groot-n1.7</span></a>
-  </div>
-</article></div>
-</section><section class="stage" id="deploy" aria-labelledby="deploy-h">
-  <header class="stagehead">
-    <p class="eyebrow">Stage 4 of 4</p>
-    <h3 id="deploy-h">Deploy on NVIDIA edge</h3>
-    <p>Policies and world models running on Jetson AGX Thor and GB10.</p>
-  </header>
-  <div class="projs"><article class="proj" id="p05">
-  <figure class="shot"><video src="media/p05.mp4" poster="media/p05.webp" autoplay muted loop playsinline preload="metadata" aria-label="gb10_cosmos_policy_server demo"></video></figure>
-  <div class="pbody">
-    <p class="pmeta"><span class="pnum">P05</span><span>Policy serving</span></p>
-    <h4>gb10_cosmos_policy_server</h4>
-    <p class="plede">A Docker setup that serves the Cosmos3-Nano action policy against the RoboLab benchmark on NVIDIA GB10 hardware.</p>
-    <ul class="results"><li>Containerized policy server; the RoboLab client can run any of 120 registered tasks</li><li>Patched for GB10: PyTorch attention fallback and a PyAV video decoder</li><li>Fine-tuning pipeline: DCP conversion, dry-run-validated SFT configs, export for serving</li></ul>
-    <ul class="stack" aria-label="Stack"><li>NVIDIA GB10 (Grace Blackwell)</li><li>CUDA 13.0</li><li>Docker</li><li>Cosmos3-Nano</li><li>RoboLab</li></ul>
-    <a class="repo" href="https://github.com/kabilankb/gb10_cosmos_policy_server" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.96 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.28.82 2.15 0 3.08-1.87 3.76-3.66 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg><span>github.com/kabilankb/gb10_cosmos_policy_server</span></a>
-  </div>
-</article><article class="proj" id="p02">
-  <figure class="shot"><img src="media/p02.webp" alt="Cosmos3-Edge SO-101 on Jetson Thor screenshot" loading="lazy"></figure>
-  <div class="pbody">
-    <p class="pmeta"><span class="pnum">P02</span><span>Edge deployment · hardware-in-the-loop</span><span class="badge">Featured on Jetson AI Lab</span></p>
-    <h4>Cosmos3-Edge SO-101 on Jetson Thor</h4>
-    <p class="plede">Runs a ~2B Cosmos3-Edge action policy on Jetson Thor and closes the control loop with an Isaac Lab digital twin on a laptop.</p>
-    <ul class="results"><li>Policy returns 32-step × 6-joint action chunks, streamed to a live web dashboard</li><li>torch.compile + cuDNN attention cut chunk time from 4.3 s to ~1.5–2.1 s</li><li>Split architecture: sim and UI on a laptop, inference on Thor over SSH + msgpack</li></ul>
-    <ul class="stack" aria-label="Stack"><li>Jetson AGX Thor</li><li>JetPack 7</li><li>Cosmos3-Edge</li><li>Isaac Lab 3.0</li><li>WebSocket</li></ul>
-    <a class="repo" href="https://github.com/kabilankb/so101-cosmos-nano-policy/tree/cosmos-edge/edge/thor-hil" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.96 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.28.82 2.15 0 3.08-1.87 3.76-3.66 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg><span>github.com/kabilankb/so101-cosmos-nano-policy/tree/cosmos-edge/edge/thor-hil</span></a>
-  </div>
-</article><article class="proj" id="p08">
-  <figure class="shot"><video src="media/p08.mp4" poster="media/p08.webp" autoplay muted loop playsinline preload="metadata" aria-label="Cosmos3-Nano on NVIDIA GB10 demo"></video></figure>
-  <div class="pbody">
-    <p class="pmeta"><span class="pnum">P08</span><span>World foundation model · GB10 + Jetson Thor</span></p>
-    <h4>Cosmos3-Nano on NVIDIA GB10</h4>
-    <p class="plede">Runs NVIDIA&#x27;s 16B-parameter Cosmos3-Nano world model on Blackwell aarch64 devices, behind a Gradio generator UI.</p>
-    <ul class="results"><li>Text-to-video and image-to-video: 57 frames at 480p in ~3 min on GB10</li><li>Text-to-image in ~30 s, with output up to 1280×720</li><li>~33 GB model fits in GB10&#x27;s 128 GB unified memory and loads in ~5 s</li></ul>
-    <ul class="stack" aria-label="Stack"><li>GB10</li><li>Jetson Thor</li><li>CUDA 13.0</li><li>PyTorch 2.12</li><li>Diffusers</li><li>Gradio</li><li>Docker</li></ul>
-    <a class="repo" href="https://github.com/kabilankb/cosmos3-nano-gb10" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.96 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.28.82 2.15 0 3.08-1.87 3.76-3.66 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg><span>github.com/kabilankb/cosmos3-nano-gb10</span></a>
-  </div>
-</article></div>
-</section></div>
+      <p>Eleven open-source projects, newest first, each with measured results. Most follow one pipeline: simulate and teleoperate, train with RL, learn and benchmark policies, then deploy on NVIDIA edge hardware.</p>
+    </header>
+    <ol class="projects">
+      <li class="project" id="p11">
+        <div class="body">
+          <h3><a href="https://github.com/kabilankb/aspire-yam-gear-assembly" target="_blank" rel="noopener">ASPIRE × YAM gear assembly in Isaac Sim</a></h3>
+          <p class="pmeta">October 2026 · Agentic code-as-policies</p>
+          <p class="pdesc">Runs NVIDIA ASPIRE on bimanual YAM arms in Isaac Lab. An AI agent writes the robot's control program in Python, runs it, reads the failures and fixes the code, then turns lessons that hold up into verified, reusable skills. The task: pick up a factory gear and seat it on the middle shaft.</p>
+          <ul class="results"><li>A bridge serves the Isaac Lab task to ASPIRE: arm commands, RGB-D cameras, seeded resets and task success</li><li>Round 1 seats the gear on 6 of 10 clean held-out seeds; a separate verifier agent confirmed all 5 new skills</li><li>Round 2&#x27;s tilted reach solves 3 of 9 far-shaft seeds, where round 1 solved none</li></ul>
+          <p class="stack">NVIDIA ASPIRE · Isaac Sim 6 · Isaac Lab 3.0 · YAM bimanual · SAM3 · mink IK</p>
+          <p class="code"><a href="https://github.com/kabilankb/aspire-yam-gear-assembly" target="_blank" rel="noopener">Code on GitHub<svg class="ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></p>
+        </div>
+        <figure class="thumb"><video src="media/p11.mp4" poster="media/p11.webp" autoplay muted loop playsinline preload="metadata" aria-label="ASPIRE driving the bimanual YAM arms through the gear-insertion task in Isaac Lab, 8× speed"></video><figcaption>Isaac Lab, 8× speed</figcaption></figure>
+      </li>
+      <li class="project" id="p07">
+        <div class="body">
+          <h3><a href="https://github.com/kabilankb/newton-claw-thor" target="_blank" rel="noopener">newton-claw-thor</a></h3>
+          <p class="pmeta">October 2026 · On-device training + LLM agent</p>
+          <p class="pdesc">Trains and runs robot policies in Newton on a single Jetson AGX Thor, driven by a local LLM agent that turns a request into one command.</p>
+          <ul class="results"><li>Go2 velocity tracking: 4,096 envs × 600 iterations in ~10 min 43 s on Thor</li><li>Trained Go2 policy fell 10 times in evaluation vs 18 for the reference policy</li><li>Local Gemma 4 agent routed 9 of 9 test prompts to the correct command</li></ul>
+          <p class="stack">Jetson AGX Thor · Newton 1.6 · rsl_rl PPO · Gemma 4 12B · Ollama</p>
+          <p class="code"><a href="https://github.com/kabilankb/newton-claw-thor" target="_blank" rel="noopener">Code on GitHub<svg class="ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></p>
+        </div>
+        <figure class="thumb"><video src="media/p07.mp4" poster="media/p07.webp" autoplay muted loop playsinline preload="metadata" aria-label="newton-claw-thor demo"></video></figure>
+      </li>
+      <li class="project" id="p01">
+        <div class="body">
+          <h3><a href="https://github.com/kabilankb/Isaac-Lab-3-and-add-SO-101-leader-teleoperation" target="_blank" rel="noopener">YAMLab on Isaac Sim 6 with SO-101 leader-arm teleoperation</a></h3>
+          <p class="pmeta">October 2026 · Simulation + teleoperation</p>
+          <p class="pdesc">Ported a bimanual YAM robot framework to Isaac Lab 3.0 and drove both simulated arms with real SO-101 leader arms.</p>
+          <ul class="results"><li>Two leaders drive both arms, or one leader switches between them</li><li>Teleop sessions record to HDF5 and replay into LeRobot datasets with 3 camera views</li><li>PutPotOnCooktop pick-and-place replays successfully at ~40 env-steps/s on 4 RGB envs</li></ul>
+          <p class="stack">Isaac Sim 6.0.1 · Isaac Lab 3.0 · PyTorch 2.10 · LeRobot</p>
+          <p class="code"><a href="https://github.com/kabilankb/Isaac-Lab-3-and-add-SO-101-leader-teleoperation" target="_blank" rel="noopener">Code on GitHub<svg class="ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></p>
+        </div>
+        <figure class="thumb"><img src="media/p01.webp" alt="YAMLab on Isaac Sim 6 with SO-101 leader-arm teleoperation screenshot" loading="lazy"></figure>
+      </li>
+      <li class="project" id="p02">
+        <div class="body">
+          <h3><a href="https://github.com/kabilankb/so101-cosmos-nano-policy/tree/cosmos-edge/edge/thor-hil" target="_blank" rel="noopener">Cosmos3-Edge SO-101 on Jetson Thor</a></h3>
+          <p class="pmeta">September 2026 · Edge deployment · hardware-in-the-loop · <span class="feat">Featured on Jetson AI Lab</span></p>
+          <p class="pdesc">Runs a ~2B Cosmos3-Edge action policy on Jetson Thor and closes the control loop with an Isaac Lab digital twin on a laptop.</p>
+          <ul class="results"><li>Policy returns 32-step × 6-joint action chunks, streamed to a live web dashboard</li><li>torch.compile + cuDNN attention cut chunk time from 4.3 s to ~1.5–2.1 s</li><li>Split architecture: sim and UI on a laptop, inference on Thor over SSH + msgpack</li></ul>
+          <p class="stack">Jetson AGX Thor · JetPack 7 · Cosmos3-Edge · Isaac Lab 3.0 · WebSocket</p>
+          <p class="code"><a href="https://github.com/kabilankb/so101-cosmos-nano-policy/tree/cosmos-edge/edge/thor-hil" target="_blank" rel="noopener">Code on GitHub<svg class="ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></p>
+        </div>
+        <figure class="thumb"><img src="media/p02.webp" alt="Cosmos3-Edge SO-101 on Jetson Thor screenshot" loading="lazy"></figure>
+      </li>
+      <li class="project" id="p04">
+        <div class="body">
+          <h3><a href="https://github.com/kabilankb/isaaclab-microduck" target="_blank" rel="noopener">isaaclab_microduck</a></h3>
+          <p class="pmeta">August 2026 · Reinforcement learning</p>
+          <p class="pdesc">Isaac Lab 3.0 RL environments for the Microduck bipedal robot, built on Newton&#x27;s MuJoCo-Warp solver.</p>
+          <ul class="results"><li>Five tasks: locomotion, running, ball kicking, a two-robot rally and side-by-side running</li><li>A fixed 61-D observation lets ONNX policies be hot-swapped at runtime</li><li>BallKick and BallRally trained and measured; 149 CPU-only config tests</li></ul>
+          <p class="stack">Isaac Lab 3.0 · Newton (MuJoCo-Warp) · PyTorch · ONNX</p>
+          <p class="code"><a href="https://github.com/kabilankb/isaaclab-microduck" target="_blank" rel="noopener">Code on GitHub<svg class="ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></p>
+        </div>
+        <figure class="thumb"><img src="media/p04.webp" alt="isaaclab_microduck screenshot" loading="lazy"></figure>
+      </li>
+      <li class="project" id="p05">
+        <div class="body">
+          <h3><a href="https://github.com/kabilankb/gb10_cosmos_policy_server" target="_blank" rel="noopener">gb10_cosmos_policy_server</a></h3>
+          <p class="pmeta">August 2026 · Policy serving</p>
+          <p class="pdesc">A Docker setup that serves the Cosmos3-Nano action policy against the RoboLab benchmark on NVIDIA GB10 hardware.</p>
+          <ul class="results"><li>Containerized policy server; the RoboLab client can run any of 120 registered tasks</li><li>Patched for GB10: PyTorch attention fallback and a PyAV video decoder</li><li>Fine-tuning pipeline: DCP conversion, dry-run-validated SFT configs, export for serving</li></ul>
+          <p class="stack">NVIDIA GB10 (Grace Blackwell) · CUDA 13.0 · Docker · Cosmos3-Nano · RoboLab</p>
+          <p class="code"><a href="https://github.com/kabilankb/gb10_cosmos_policy_server" target="_blank" rel="noopener">Code on GitHub<svg class="ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></p>
+        </div>
+        <figure class="thumb"><video src="media/p05.mp4" poster="media/p05.webp" autoplay muted loop playsinline preload="metadata" aria-label="gb10_cosmos_policy_server demo"></video></figure>
+      </li>
+      <li class="project" id="p03">
+        <div class="body">
+          <h3><a href="https://github.com/kabilankb/rebot-isaacsim-bridge" target="_blank" rel="noopener">rebot-isaacsim-bridge</a></h3>
+          <p class="pmeta">August 2026 · Real-to-sim bridge</p>
+          <p class="pdesc">A real-time bridge that mirrors a real arm&#x27;s LeRobot teleop session into Isaac Sim, without touching real-arm control.</p>
+          <ul class="results"><li>Streams follower joint state every loop iteration over a simple UDP JSON protocol</li><li>Per-joint sign flips and gripper scaling match any simulated asset&#x27;s conventions</li><li>Supports Seeed reBotArm B601 follower and 102 leader; pip-installable sender</li></ul>
+          <p class="stack">LeRobot · Isaac Sim · UDP / JSON · Seeed reBotArm B601</p>
+          <p class="code"><a href="https://github.com/kabilankb/rebot-isaacsim-bridge" target="_blank" rel="noopener">Code on GitHub<svg class="ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></p>
+        </div>
+        <figure class="thumb"><img src="media/p03.webp" alt="rebot-isaacsim-bridge screenshot" loading="lazy"></figure>
+      </li>
+      <li class="project" id="p06">
+        <div class="body">
+          <h3><a href="https://github.com/kabilankb/so101-bench-groot-n1.7" target="_blank" rel="noopener">SO-101 Bench × GR00T-N1.7</a></h3>
+          <p class="pmeta">July 2026 · VLA fine-tuning + benchmarking</p>
+          <p class="pdesc">Fine-tune and evaluate GR00T-N1.7 on SO-101 Bench in an Isaac Lab digital twin, with no physical robot required.</p>
+          <ul class="results"><li>Language-conditioned tabletop suite over 56 household objects</li><li>Loss 1.114 → 0.065 over 20k steps in ~90 min on a single RTX PRO 6000</li><li>Automatic episode scoring with failure tags such as failed_grasp and wrong_object</li></ul>
+          <p class="stack">Isaac Sim / Isaac Lab 5.1 · GR00T-N1.7-3B · LeRobot · ZMQ</p>
+          <p class="code"><a href="https://github.com/kabilankb/so101-bench-groot-n1.7" target="_blank" rel="noopener">Code on GitHub<svg class="ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></p>
+        </div>
+        <figure class="thumb"><video src="media/p06.mp4" poster="media/p06.webp" autoplay muted loop playsinline preload="metadata" aria-label="SO-101 Bench × GR00T-N1.7 demo"></video></figure>
+      </li>
+      <li class="project" id="p08">
+        <div class="body">
+          <h3><a href="https://github.com/kabilankb/cosmos3-nano-gb10" target="_blank" rel="noopener">Cosmos3-Nano on NVIDIA GB10</a></h3>
+          <p class="pmeta">June 2026 · World foundation model · GB10 + Jetson Thor</p>
+          <p class="pdesc">Runs NVIDIA&#x27;s 16B-parameter Cosmos3-Nano world model on Blackwell aarch64 devices, behind a Gradio generator UI.</p>
+          <ul class="results"><li>Text-to-video and image-to-video: 57 frames at 480p in ~3 min on GB10</li><li>Text-to-image in ~30 s, with output up to 1280×720</li><li>~33 GB model fits in GB10&#x27;s 128 GB unified memory and loads in ~5 s</li></ul>
+          <p class="stack">GB10 · Jetson Thor · CUDA 13.0 · PyTorch 2.12 · Diffusers · Gradio · Docker</p>
+          <p class="code"><a href="https://github.com/kabilankb/cosmos3-nano-gb10" target="_blank" rel="noopener">Code on GitHub<svg class="ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></p>
+        </div>
+        <figure class="thumb"><video src="media/p08.mp4" poster="media/p08.webp" autoplay muted loop playsinline preload="metadata" aria-label="Cosmos3-Nano on NVIDIA GB10 demo"></video></figure>
+      </li>
+      <li class="project" id="p10">
+        <div class="body">
+          <h3><a href="https://github.com/kabilankb/SO-101-VR-Control" target="_blank" rel="noopener">SO-101 VR Control</a></h3>
+          <p class="pmeta">May 2026 · VR teleoperation</p>
+          <p class="pdesc">Open-source, browser-based VR teleoperation for the SO-101 arm with a Meta Quest: one command, no app install.</p>
+          <ul class="results"><li>Hold grip and the end effector follows your hand; trigger closes the gripper</li><li>PyBullet inverse kinematics drives six STS3215 servos through LeRobot</li><li>Safety: 200°/s velocity limit, 10° per-command cap, 5° joint margins</li></ul>
+          <p class="stack">Meta Quest · WebXR + A-Frame · WebSocket (WSS) · PyBullet IK · LeRobot</p>
+          <p class="code"><a href="https://github.com/kabilankb/SO-101-VR-Control" target="_blank" rel="noopener">Code on GitHub<svg class="ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></p>
+        </div>
+        <figure class="thumb"><img src="media/p10.webp" alt="SO-101 VR Control screenshot" loading="lazy"></figure>
+      </li>
+      <li class="project" id="p09">
+        <div class="body">
+          <h3><a href="https://github.com/kabilankb/xlerobot_isaaclab-" target="_blank" rel="noopener">XLeRobot IsaacLab</a></h3>
+          <p class="pmeta">March 2026 · Mobile manipulation + teleoperation</p>
+          <p class="pdesc">A standalone Isaac Lab extension for the XLeRobot dual-arm mobile manipulator, with keyboard and gamepad teleoperation.</p>
+          <ul class="results"><li>Three environments: ground plane, cube lifting and a loft scene</li><li>Drive the base at three speeds and control both arms and grippers from keyboard or gamepad</li><li>Runs up to 4 parallel environments; URDF and USD assets ship with the repo</li></ul>
+          <p class="stack">Isaac Sim 4.5+ · Isaac Lab · URDF / USD · Keyboard + Xbox gamepad</p>
+          <p class="code"><a href="https://github.com/kabilankb/xlerobot_isaaclab-" target="_blank" rel="noopener">Code on GitHub<svg class="ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></p>
+        </div>
+        <figure class="thumb"><img src="media/p09.webp" alt="XLeRobot IsaacLab screenshot" loading="lazy"></figure>
+      </li>
+    </ol>
   </section>
 
-  <section class="contact" id="contact" aria-labelledby="contact-h">
-    <div>
-      <h2 id="contact-h">Let's build robots that learn.</h2>
-      <p>Open to collaborations, talks and roles in robot learning, simulation and edge AI. The fastest way to reach me is a message on LinkedIn or X.</p>
-    </div>
-    <ul class="handles">
-      <li><a href="https://github.com/kabilankb" target="_blank" rel="noopener"><span class="k">GitHub</span><span class="h">kabilankb</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></li>
-      <li><a href="https://www.linkedin.com/in/kabilan-kb" target="_blank" rel="noopener"><span class="k">LinkedIn</span><span class="h">in/kabilan-kb</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></li>
-      <li><a href="https://x.com/kabilankb2003" target="_blank" rel="noopener"><span class="k">X</span><span class="h">@kabilankb2003</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></li>
+  <section id="press" aria-labelledby="press-h">
+    <header class="sec">
+      <h2 id="press-h">Press &amp; recognition</h2>
+      <p>Two features on the NVIDIA Blog, a featured Jetson AI Lab community project, and ambassador roles with NVIDIA and Dell.</p>
+    </header>
+    <ul class="press">
+      <li><a class="noimg" href="https://www.jetson-ai-lab.com/projects" target="_blank" rel="noopener">
+        <p class="when">Sep 19, 2026</p>
+        <div><p class="src">Jetson AI Lab · Community projects</p><h3>Cosmos3-Edge SO-101 on Jetson Thor, listed as a featured project<svg class="ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></h3></div>
+      </a></li>
+      <li><a href="https://blogs.nvidia.com/blog/jetson-edge-ai-holiday-2025/" target="_blank" rel="noopener">
+        <p class="when">Dec 4, 2025</p>
+        <div><p class="src">NVIDIA Blog · Jetson community</p><h3>Photorealistic forklift automation<svg class="ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></h3><p class="blurb">A fully automated forklift built and tested in Isaac Sim, with physics-accurate wheel steering and mast lifting. Virtual cameras and lidar stream to ROS 2 for mapping, obstacle avoidance and perception testing before deployment on Jetson.</p></div>
+        <img src="media/press-forklift.webp" alt="Simulated autonomous forklift in an Isaac Sim warehouse with a ROS teleop terminal" loading="lazy" style="object-position:60% 40%">
+      </a></li>
+      <li><a href="https://blogs.nvidia.com/blog/kabilan-kb-autonomous-wheelchair/" target="_blank" rel="noopener">
+        <p class="when">Oct 3, 2023</p>
+        <div><p class="src">NVIDIA Blog · Meet the Maker</p><h3>Autonomous wheelchair with NVIDIA Jetson<svg class="ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></h3><p class="blurb">An autonomous wheelchair for people who can't operate a manual or motorized chair. It maps the room, plans a collision-free route and drives itself to a chosen destination such as the kitchen or bedroom. Built as an undergraduate at Karunya Institute of Technology and Sciences.</p></div>
+        <img src="media/press-wheelchair.webp" alt="Kabilan KB's autonomous wheelchair in a lab doorway at Karunya Institute" loading="lazy" style="object-position:50% 70%">
+      </a></li>
+      <li><a class="noimg" href="https://www.jetson-ai-lab.com/research/" target="_blank" rel="noopener">
+        <p class="when">Role</p>
+        <div><p class="src">Jetson AI Lab · Research Group</p><h3>Core contributor, for ROS 2 tutorials and the autonomous wheelchair<svg class="ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></h3></div>
+      </a></li>
+      <li><a class="noimg" href="https://www.nvidia.com/en-us/omniverse/community/" target="_blank" rel="noopener">
+        <p class="when">Role</p>
+        <div><p class="src">NVIDIA Omniverse and Deep Learning Institute</p><h3>Ambassador, teaching Isaac Sim and ROS<svg class="ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></h3></div>
+      </a></li>
+      <li><div class="row noimg">
+        <p class="when">Role</p>
+        <div><p class="src">Dell</p><h3>Dell Ambassador</h3></div>
+      </div></li>
     </ul>
   </section>
-  <p class="foot">© 2026 Kabilan KB · All projects open source</p>
+
+  <section id="about" aria-labelledby="about-h">
+    <div class="split">
+      <div>
+        <h2 id="about-h">About</h2>
+        <dl class="kit">
+          <div><dt>Simulation &amp; learning</dt><dd>Isaac Sim, Isaac Lab, Newton, LeRobot, GR00T, Cosmos, ASPIRE</dd></div>
+          <div><dt>Compute</dt><dd>Jetson AGX Thor (JetPack 7), NVIDIA GB10 Grace Blackwell, RTX PRO 6000</dd></div>
+          <div><dt>Robots</dt><dd>SO-101, YAM, reBotArm B601, XLeRobot, Go2, Microduck</dd></div>
+        </dl>
+      </div>
+      <div class="bio">
+        <p>I started with an autonomous wheelchair on a Jetson Nano, built as an undergraduate at Karunya Institute of Technology and Sciences, which NVIDIA featured on its blog in 2023.</p>
+        <p>Since then my work has moved into robot learning. I bring up robots in Isaac Sim and Isaac Lab, collect demonstrations with leader arms and VR, train policies with massively parallel RL, fine-tune and benchmark VLA models without a physical robot, and deploy policies and world models on Jetson AGX Thor and GB10. Every project is open source, with the numbers to show how it performs.</p>
+        <p>As an NVIDIA Deep Learning Institute and Omniverse Ambassador I teach Isaac Sim and ROS.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-h">
+    <div class="split">
+      <h2 id="contact-h">Contact</h2>
+      <div class="contact">
+        <h3>Let's build robots that learn.</h3>
+        <p>Open to collaborations, talks and roles in robot learning, simulation and edge AI. The fastest way to reach me is a message on LinkedIn or X.</p>
+        <ul>
+          <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/kabilan-kb" target="_blank" rel="noopener">in/kabilan-kb</a></li>
+          <li><span>X</span><a href="https://x.com/kabilankb2003" target="_blank" rel="noopener">@kabilankb2003</a></li>
+          <li><span>GitHub</span><a href="https://github.com/kabilankb" target="_blank" rel="noopener">kabilankb</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot"><span>© 2026 Kabilan KB</span><span>All projects open source · Updated October 2026</span></footer>
 </div>
-<script type="module">
-import { mount } from './hero3d.js';
-try {
-  mount(document.getElementById('viewport'), { still: matchMedia('(prefers-reduced-motion: reduce)').matches });
-} catch (err) {
-  console.warn('3D backdrop unavailable, showing the still:', err);
-}
-</script>
 <script>
-// Depth on the page: sections rise into place as they scroll in, and cards tilt toward the pointer.
-(() => {
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver(es => es.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    }), { rootMargin: '0px 0px -8% 0px' });
-    document.querySelectorAll('.metric, .sechead, .pcard, .rcard, .stagehead, .proj, .contact > *').forEach(el => {
-      el.dataset.reveal = ''; io.observe(el);
-    });
-  }
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  document.querySelectorAll('.pcard, .rcard, .proj').forEach(card => {
-    const max = card.classList.contains('proj') ? 1.5 : 3.5;
-    let raf = 0;
-    card.classList.add('tilt');
-    card.addEventListener('pointermove', e => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
-        card.style.setProperty('--ry', ((x - 0.5) * 2 * max).toFixed(2) + 'deg');
-        card.style.setProperty('--rx', ((0.5 - y) * 2 * max).toFixed(2) + 'deg');
-        card.style.setProperty('--gx', (x * 100).toFixed(1) + '%');
-        card.style.setProperty('--gy', (y * 100).toFixed(1) + '%');
-        card.classList.add('tilting');
-      });
-    });
-    card.addEventListener('pointerleave', () => {
-      cancelAnimationFrame(raf);
-      card.classList.remove('tilting');
-      card.style.setProperty('--rx', '0deg'); card.style.setProperty('--ry', '0deg');
-    });
-  });
-})();
+// Demo clips loop silently, but respect reduced motion: show the poster frame instead.
+if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.querySelectorAll('video[autoplay]').forEach(v => { v.removeAttribute('autoplay'); v.pause(); });
+}
 </script>
 </body>
 </html>
