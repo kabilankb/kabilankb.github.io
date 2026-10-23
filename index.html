@@ -21,9 +21,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <script>document.documentElement.classList.add('js')</script>
 <style>
-/* Layout: one spine, the sim → train → fine-tune → deploy pipeline. A live 3D viewport opens it,
-   a rail indexes it, the work follows it. Depth comes from the WebGL hero, tilting cards and
-   perspective reveals; everything still reads with JS off. */
+/* Layout: one spine, the sim → train → fine-tune → deploy pipeline. A 3D point field opens it,
+   a rail indexes it, the work follows it. Depth comes from the WebGL backdrop, gently tilting
+   cards and perspective reveals; everything still reads with JS off. */
 :root{
   /* Single dark theme in NVIDIA green, so the lit 3D scene blends into the page. */
   --bg:#0A0D0A; --surface:#121712; --surface-2:#171D17; --ink:#ECF1E7; --muted:#9AA894;
@@ -55,34 +55,20 @@ svg{width:1em;height:1em;flex:none}
 .topnav{display:flex;gap:20px;flex-wrap:wrap;font-size:.9rem;color:var(--muted)}
 .topnav a{text-decoration:none}.topnav a:hover{color:var(--ink)}
 
-/* hero: copy on the left, the live viewport bleeding off the right edge */
-.hero{position:relative;min-height:clamp(620px,86vh,860px);display:grid;align-items:center;isolation:isolate}
-.viewport{position:absolute;inset:-76px 0 0 30%;z-index:-1;
-  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 24%,#000 100%),linear-gradient(180deg,#000 82%,transparent);
-  -webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 24%),linear-gradient(180deg,#000 82%,transparent);mask-composite:intersect}
+/* hero: role-first copy over a full-bleed 3D point-field backdrop */
+.hero{position:relative;min-height:clamp(600px,84vh,820px);display:grid;align-items:center;isolation:isolate}
+.viewport{position:absolute;inset:-76px 0 0 0;z-index:-1;pointer-events:none;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 28%,#000 80%,transparent);mask-image:linear-gradient(180deg,transparent 0,#000 28%,#000 80%,transparent)}
+.viewport::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0,rgba(10,13,10,.6) 36%,transparent 72%)}
 .viewport canvas,.viewport .poster{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover}
-.viewport canvas{opacity:0;transition:opacity .9s ease;cursor:grab}
-.viewport.dragging canvas{cursor:grabbing}
+.viewport canvas{opacity:0;transition:opacity 1.4s ease}
 .viewport.ready canvas{opacity:1}
-.viewport .poster{transition:opacity .9s ease}
+.viewport .poster{transition:opacity 1.4s ease}
 .viewport.ready .poster{opacity:0}
-.hud{position:absolute;font:500 .7rem/1.5 var(--f-mono);letter-spacing:.04em;color:var(--muted);pointer-events:none}
-.hud-top{top:96px;right:max(16px,calc((100vw - var(--wrap))/2 + 16px));display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-.chip{display:inline-flex;align-items:center;gap:7px;padding:5px 10px;border-radius:999px;border:1px solid var(--line-2);background:rgba(10,13,10,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);text-transform:uppercase}
-.chip.live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(118,185,0,.6);animation:pulse 2s infinite}
-@keyframes pulse{70%{box-shadow:0 0 0 7px rgba(118,185,0,0)}100%{box-shadow:0 0 0 0 rgba(118,185,0,0)}}
-.hud-joints{right:max(16px,calc((100vw - var(--wrap))/2 + 16px));bottom:64px;width:236px;padding:12px 14px;border-radius:12px;border:1px solid var(--line-2);background:rgba(10,13,10,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.hud-joints p{margin:0 0 6px;color:var(--ink);text-transform:uppercase;letter-spacing:.08em}
-.hud-joints dl{display:grid;grid-template-columns:1fr auto;gap:1px 12px;margin:0}
-.hud-joints dd{margin:0;color:var(--ink);font-variant-numeric:tabular-nums;white-space:pre}
-.hud-joints .sep{height:1px;background:var(--line-2);margin:6px 0}
-.hud-joints [data-hud=phase]{color:var(--accent)}
-.hud-hint{left:34%;bottom:64px}
-.viewport .hud{opacity:0;transition:opacity .9s ease .3s}
-.viewport.ready .hud{opacity:1}
-@media (hover:none){.hud-hint{display:none}}
 .hero>.wrap{width:100%}
-.herocopy{position:relative;padding-block:24px 56px;max-width:34rem;display:grid;gap:22px}
+.herocopy{position:relative;padding-block:24px 56px;max-width:36rem;display:grid;gap:22px}
+.role{color:var(--ink)}
+.role span{color:var(--accent)}
 .hero h1{font-weight:850;font-stretch:122%;font-size:clamp(2.6rem,6.6vw,5.6rem);line-height:.92;letter-spacing:-.025em;max-width:11ch;text-shadow:0 2px 30px rgba(10,13,10,.8)}
 .hero h1 em{font-style:normal;font-stretch:62%;font-weight:700;color:var(--accent);background:linear-gradient(transparent 72%,rgba(118,185,0,.28) 72%)}
 .hero .lede{font-size:1.1rem;max-width:52ch;margin:0;color:var(--ink);text-shadow:0 1px 18px rgba(10,13,10,.9)}
@@ -97,7 +83,7 @@ svg{width:1em;height:1em;flex:none}
 .btn:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(0,0,0,.8)}
 .btn.primary{background:var(--green);border-color:var(--green);color:var(--accent-ink);box-shadow:0 8px 28px -8px rgba(118,185,0,.55)}
 .btn.primary:hover{border-color:var(--accent);box-shadow:0 14px 34px -10px rgba(118,185,0,.7)}
-@media (prefers-reduced-motion:reduce){.btn,.latest{transition:none}.btn:hover{transform:none}.chip.live::before{animation:none}}
+@media (prefers-reduced-motion:reduce){.btn,.latest{transition:none}.btn:hover{transform:none}}
 
 /* pipeline rail: the signature */
 .rail{border:1px solid var(--line-2);background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01)),var(--surface);border-radius:16px;padding:22px 22px 18px;box-shadow:var(--lift)}
@@ -120,12 +106,11 @@ svg{width:1em;height:1em;flex:none}
 .spro{font:400 .76rem/1.4 var(--f-mono);color:var(--muted)}
 .hw{font:400 .76rem/1.5 var(--f-mono);color:var(--muted);margin:18px 0 0;padding-top:14px;border-top:1px dashed var(--line-2)}
 
-/* metrics: numerals with a short extrusion */
+/* metrics */
 .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-block:56px}
 .metric{padding:22px 20px;display:grid;gap:8px;align-content:start;border:1px solid var(--line);border-radius:14px;background:linear-gradient(160deg,var(--surface-2),var(--surface));box-shadow:var(--lift)}
-.metric b{font:850 clamp(2rem,4.2vw,3.1rem)/1 var(--f-display);font-stretch:112%;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--ink);
-  text-shadow:0 1px 0 #4F7D00,0 2px 0 #426A00,0 3px 0 #355600,0 4px 0 #284200,0 10px 18px rgba(0,0,0,.7)}
-.metric b small{font-size:.45em;font-weight:700;font-stretch:90%;color:var(--muted);margin-left:2px;text-shadow:none}
+.metric b{font:850 clamp(2rem,4.2vw,3.1rem)/1 var(--f-display);font-stretch:112%;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--ink)}
+.metric b small{font-size:.45em;font-weight:700;font-stretch:90%;color:var(--accent);margin-left:2px}
 .metric span{color:var(--muted);font-size:.92rem;max-width:30ch}
 
 /* section headings */
@@ -148,7 +133,7 @@ svg{width:1em;height:1em;flex:none}
 .rcard figure{margin:0;height:248px;display:grid;place-items:center;perspective:900px;border-bottom:1px solid var(--line);
   background:radial-gradient(ellipse 70% 60% at 50% 100%,rgba(118,185,0,.22),transparent 70%),linear-gradient(180deg,#0E120E,#151B15)}
 /* each screenshot stands on the card like a printed card turned toward you */
-.rcard img{height:206px;width:auto;max-width:86%;object-fit:cover;object-position:top;border-radius:10px;transform:rotateY(-16deg) rotateX(7deg) rotateZ(1deg);
+.rcard img{height:206px;width:auto;max-width:86%;object-fit:cover;object-position:top;border-radius:10px;transform:rotateY(-9deg) rotateX(4deg);
   box-shadow:-18px 30px 40px -14px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.08);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
 .rcard:hover img{transform:rotateY(0) rotateX(0) translateZ(30px)}
 .rcard>div{display:grid;gap:8px;align-content:start;min-width:0;padding:18px 20px 20px}
@@ -220,20 +205,12 @@ svg{width:1em;height:1em;flex:none}
 @media (prefers-reduced-motion:reduce){.js [data-reveal]{translate:none;rotate:none;transition:opacity .4s ease}.rcard img{transform:none}.pcard:hover img{transform:none}}
 
 @media (max-width:1180px){
-  .viewport{left:36%}
-  .herocopy{max-width:30rem}
-  .hud-hint{left:40%}
+  .herocopy{max-width:32rem}
 }
 @media (max-width:1000px){
   .hero{min-height:0;display:block}
-  .viewport{position:relative;inset:auto;height:min(112vw,600px);margin-top:-76px;
-    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 14%,#000 80%,transparent);mask-image:linear-gradient(180deg,transparent 0,#000 14%,#000 80%,transparent);-webkit-mask-composite:source-over;mask-composite:add}
-  .hud-top{top:84px;right:16px}
-  .hud-top .chip:last-child{display:none}
-  .hud-joints{right:16px;bottom:56px;width:auto;padding:8px 10px}
-  .hud-joints dl,.hud-joints .jt,.hud-joints .sep{display:none}
-  .hud-hint{display:none}
-  .herocopy{max-width:none;margin-top:-56px;padding-top:0}
+  .viewport::after{background:linear-gradient(180deg,rgba(10,13,10,.15),rgba(10,13,10,.6))}
+  .herocopy{max-width:none;padding-block:48px 56px}
   .sechead,.contact{grid-template-columns:minmax(0,1fr)}
   .proj{grid-template-columns:minmax(0,1fr)}
   .press,.recog{grid-template-columns:minmax(0,1fr)}
@@ -256,7 +233,6 @@ svg{width:1em;height:1em;flex:none}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
 <link rel="modulepreload" href="hero3d.js">
-<link rel="preload" href="media/so101.glb" as="fetch" crossorigin>
 
 </head>
 <body>
@@ -268,37 +244,17 @@ svg{width:1em;height:1em;flex:none}
 </header>
 
 <section class="hero" aria-labelledby="hero-h">
-  <div class="viewport" id="viewport">
-    <img class="poster" src="media/hero-poster.webp" alt="" aria-hidden="true">
-    <canvas role="img" aria-label="Live 3D model of an SO-101 robot arm moving a green gear from one shaft to another"></canvas>
-    <div class="hud hud-top" aria-hidden="true">
-      <span class="chip live">Live</span><span class="chip">SO-101 · URDF</span><span class="chip">Perspective</span>
-    </div>
-    <div class="hud hud-joints" aria-hidden="true">
-      <p><span class="jt">Joint state · </span><span data-hud="phase">idle</span></p>
-      <dl>
-        <dt>shoulder_pan</dt><dd data-hud="shoulder_pan">+000.0°</dd>
-        <dt>shoulder_lift</dt><dd data-hud="shoulder_lift">+000.0°</dd>
-        <dt>elbow_flex</dt><dd data-hud="elbow_flex">+000.0°</dd>
-        <dt>wrist_flex</dt><dd data-hud="wrist_flex">+000.0°</dd>
-        <dt>wrist_roll</dt><dd data-hud="wrist_roll">+000.0°</dd>
-        <dt>gripper</dt><dd data-hud="gripper">+000.0°</dd>
-      </dl>
-      <div class="sep"></div>
-      <dl>
-        <dt>task</dt><dd data-hud="task">shaft A → shaft B</dd>
-        <dt>tcp mm</dt><dd data-hud="tcp">   0    0    0</dd>
-      </dl>
-    </div>
-    <p class="hud hud-hint" aria-hidden="true">Drag to orbit</p>
+  <div class="viewport" id="viewport" aria-hidden="true">
+    <img class="poster" src="media/hero-poster.webp" alt="">
+    <canvas></canvas>
   </div>
 
   <div class="wrap">
     <div class="herocopy">
-      <p class="eyebrow">Robot learning · Isaac Sim · Isaac Lab · Newton · LeRobot · GR00T · Cosmos</p>
+      <p class="eyebrow role">Roboticist <span>·</span> Robot learning &amp; edge AI <span>·</span> Tamil Nadu, India</p>
       <h1 id="hero-h">From simulation <em>to the</em> edge.</h1>
       <p class="lede">I'm Kabilan KB. I build open-source robot learning pipelines that start in an NVIDIA digital twin and end on real edge hardware: teleop rigs that collect data, RL that trains thousands of robots at once, and VLA and world models running on Jetson AGX Thor and GB10.</p>
-      <a class="latest" href="#p11"><b>New</b><span>ASPIRE on YAM arms: an agent writes, tests and fixes its own gear-insertion code</span></a>
+      <a class="latest" href="#p11"><b>Latest</b><span>ASPIRE on YAM arms: an agent writes, tests and fixes its own gear-insertion code</span></a>
       <ul class="creds">
         <li>Featured on the NVIDIA Blog</li>
         <li>Jetson AI Lab Research Group core contributor</li>
@@ -547,13 +503,15 @@ svg{width:1em;height:1em;flex:none}
       <li><a href="https://x.com/kabilankb2003" target="_blank" rel="noopener"><span class="k">X</span><span class="h">@kabilankb2003</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></li>
     </ul>
   </section>
-  <p class="foot">© 2026 Kabilan KB · All projects open source · Hero: the SO-101 from its URDF, rendered live with three.js</p>
+  <p class="foot">© 2026 Kabilan KB · All projects open source</p>
 </div>
 <script type="module">
 import { mount } from './hero3d.js';
-const vp = document.getElementById('viewport');
-mount(vp, { modelUrl: 'media/so101.glb', still: matchMedia('(prefers-reduced-motion: reduce)').matches })
-  .catch(err => console.warn('3D viewport unavailable, showing the still:', err));
+try {
+  mount(document.getElementById('viewport'), { still: matchMedia('(prefers-reduced-motion: reduce)').matches });
+} catch (err) {
+  console.warn('3D backdrop unavailable, showing the still:', err);
+}
 </script>
 <script>
 // Depth on the page: sections rise into place as they scroll in, and cards tilt toward the pointer.
@@ -568,7 +526,7 @@ mount(vp, { modelUrl: 'media/so101.glb', still: matchMedia('(prefers-reduced-mot
   }
   if (matchMedia('(prefers-reduced-motion: reduce)').matches || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
   document.querySelectorAll('.pcard, .rcard, .proj').forEach(card => {
-    const max = card.classList.contains('proj') ? 2.5 : 6;
+    const max = card.classList.contains('proj') ? 1.5 : 3.5;
     let raf = 0;
     card.classList.add('tilt');
     card.addEventListener('pointermove', e => {
