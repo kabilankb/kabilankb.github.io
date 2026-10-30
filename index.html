@@ -157,16 +157,27 @@ section{margin-bottom:96px;scroll-margin-top:16px}
       <div><dt>Focus</dt><dd>Robot learning, simulation, edge AI</dd></div>
       <div><dt>Community</dt><dd>NVIDIA DLI and Omniverse Ambassador, Jetson AI Lab Research Group core contributor, Dell Ambassador</dd></div>
       <div><dt>Elsewhere</dt><dd><a href="https://github.com/kabilankb" target="_blank" rel="noopener">GitHub</a>, <a href="https://www.linkedin.com/in/kabilan-kb" target="_blank" rel="noopener">LinkedIn</a>, <a href="https://x.com/kabilankb2003" target="_blank" rel="noopener">X</a></dd></div>
-      <div><dt>Latest</dt><dd><a href="#p11">ASPIRE × YAM gear assembly</a>, October 2026</dd></div>
+      <div><dt>Latest</dt><dd><a href="#p12">reBot Duo: Sim-to-Policy</a>, October 2026</dd></div>
     </dl>
   </section>
 
   <section id="work" aria-labelledby="work-h">
     <header class="sec">
       <h2 id="work-h">Selected work</h2>
-      <p>Eleven open-source projects, newest first, each with measured results. Most follow one pipeline: simulate and teleoperate, train with RL, learn and benchmark policies, then deploy on NVIDIA edge hardware.</p>
+      <p>Twelve open-source projects, newest first, each with measured results. Most follow one pipeline: simulate and teleoperate, train with RL, learn and benchmark policies, then deploy on NVIDIA edge hardware.</p>
     </header>
     <ol class="projects">
+      <li class="project" id="p12">
+        <div class="body">
+          <h3><a href="https://github.com/kabilankb/rebot-duo-course" target="_blank" rel="noopener">reBot Duo: Sim-to-Policy</a></h3>
+          <p class="pmeta">October 2026 · Bimanual VLA, hardware in the loop</p>
+          <p class="pdesc">Two Seeed reBot B601 arms put two pens and an eraser into a pencil cup. The whole pipeline is built in simulation: an Isaac Lab scene, scripted demonstrations, SmolVLA fine-tuned on a Dell Pro Max, and serving through vla-edge. Then hardware in the loop: Isaac Sim runs on the Dell while every action chunk is computed on a Jetson AGX Thor. It ships with an open course.</p>
+          <ul class="results"><li>52 demonstrations, 70,884 frames; SmolVLA fine-tuned for 20k steps on one RTX PRO 5000 Blackwell laptop GPU</li><li>SmolVLA inference ≈ 278 ms per 50-step chunk on Jetson Thor, ≈ 160 ms on the Dell</li><li>On 20 unseen layouts it grasps and carries objects but rarely releases them: 1 of 20 episodes completes the task, the same failure on both machines</li></ul>
+          <p class="stack">Isaac Lab 3 · Isaac Sim 6 · LeRobot SmolVLA · vla-edge · Jetson AGX Thor · Dell Pro Max 16 Plus</p>
+          <p class="code"><a href="https://kabilankb.github.io/rebot-duo-course/" target="_blank" rel="noopener">Course<svg class="ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a> · <a href="https://github.com/kabilankb/rebot-duo-course" target="_blank" rel="noopener">Code on GitHub<svg class="ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></p>
+        </div>
+        <figure class="thumb"><video src="media/p12.mp4" poster="media/p12.webp" autoplay muted loop playsinline preload="metadata" aria-label="SmolVLA served from the Jetson Thor drives both reBot arms in Isaac Sim: each arm puts a pen in the cup, then the eraser goes in, 5× speed"></video><figcaption>Isaac Sim on the Dell, policy on Jetson Thor, 5× speed</figcaption></figure>
+      </li>
       <li class="project" id="p11">
         <div class="body">
           <h3><a href="https://github.com/kabilankb/aspire-yam-gear-assembly" target="_blank" rel="noopener">ASPIRE × YAM gear assembly in Isaac Sim</a></h3>
