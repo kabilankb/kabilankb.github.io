@@ -157,16 +157,27 @@ section{margin-bottom:96px;scroll-margin-top:16px}
       <div><dt>Focus</dt><dd>Robot learning, simulation, edge AI</dd></div>
       <div><dt>Community</dt><dd>NVIDIA DLI and Omniverse Ambassador, Jetson AI Lab Research Group core contributor, Dell Ambassador</dd></div>
       <div><dt>Elsewhere</dt><dd><a href="https://github.com/kabilankb" target="_blank" rel="noopener">GitHub</a>, <a href="https://www.linkedin.com/in/kabilan-kb" target="_blank" rel="noopener">LinkedIn</a>, <a href="https://x.com/kabilankb2003" target="_blank" rel="noopener">X</a></dd></div>
-      <div><dt>Latest</dt><dd><a href="#p12">reBot Duo: Sim-to-Policy</a>, October 2026</dd></div>
+      <div><dt>Latest</dt><dd><a href="#p13">Dream-1 in Isaac Lab</a>, November 2026</dd></div>
     </dl>
   </section>
 
   <section id="work" aria-labelledby="work-h">
     <header class="sec">
       <h2 id="work-h">Selected work</h2>
-      <p>Twelve open-source projects, newest first, each with measured results. Most follow one pipeline: simulate and teleoperate, train with RL, learn and benchmark policies, then deploy on NVIDIA edge hardware.</p>
+      <p>Thirteen open-source projects, newest first, each with measured results. Most follow one pipeline: simulate and teleoperate, train with RL, learn and benchmark policies, then deploy on NVIDIA edge hardware.</p>
     </header>
     <ol class="projects">
+      <li class="project" id="p13">
+        <div class="body">
+          <h3><a href="https://github.com/kabilankb/dreamlabs-isaaclab" target="_blank" rel="noopener">dreamlabs-isaaclab: Dream-1 in Isaac Lab</a></h3>
+          <p class="pmeta">November 2026 · Hosted robot model API, zero-shot</p>
+          <p class="pdesc">A local launcher page and Python package that run Dream Labs' Dream-1, a hosted robot model, on simulated arms in Isaac Lab. Pick a robot (the YAM or the bimanual reBot B601), a model and an instruction, save and check the API key, test the connection, and launch. A small process bridge keeps Dream's numpy and jax stack out of Isaac Sim's Python. It rebuilds Dream's own apple-into-the-bowl scene as USD for both robots, installs with one script, and has full documentation. An independent project, not affiliated with Dream Labs.</p>
+          <ul class="results"><li>Zero-shot on the YAM, the robot Dream-1 was built for: the apple goes into the bowl in 2 of 2 episodes, about 9 s of simulated time each</li><li>On the reBot B601 duo, a robot the model has not seen: 0 of 3 episodes. It grasps and carries objects but does not place them reliably, which is what fine-tuning is for</li><li>Each request returns 48 steps of joint targets for both arms: the first takes 2.3 to 4.7 s while the model starts, then 0.68 s on average over 64 calls</li></ul>
+          <p class="stack">Isaac Lab 3 · Isaac Sim 6 · Dream-1 API · YAMLab · MuJoCo · Python</p>
+          <p class="code"><a href="https://kabilankb.github.io/dreamlabs-isaaclab/" target="_blank" rel="noopener">Docs<svg class="ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a> · <a href="https://github.com/kabilankb/dreamlabs-isaaclab" target="_blank" rel="noopener">Code on GitHub<svg class="ext" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></p>
+        </div>
+        <figure class="thumb"><video src="media/p13.mp4" poster="media/p13.webp" autoplay muted loop playsinline preload="metadata" aria-label="Dream-1 drives the two YAM arms in Isaac Lab to put an orange into a bowl, 2× speed"></video><figcaption>Dream-1 on the YAM in Isaac Lab, zero-shot, 2× speed</figcaption></figure>
+      </li>
       <li class="project" id="p12">
         <div class="body">
           <h3><a href="https://github.com/kabilankb/rebot-duo-course" target="_blank" rel="noopener">reBot Duo: Sim-to-Policy</a></h3>
