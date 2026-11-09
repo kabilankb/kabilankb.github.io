@@ -139,7 +139,9 @@ section{padding:56px 0;border-top:1px solid var(--line);scroll-margin-top:58px}
 .job h3{font-size:18px;font-weight:600}
 .job .org{font-size:15px;color:var(--muted);margin-top:2px}
 .job p.d{margin-top:8px;color:var(--ink);font-size:15.5px;max-width:680px}
-@media (max-width:640px){.job{grid-template-columns:1fr;gap:2px}}
+.badge-row{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.badge{width:88px;height:88px;border-radius:10px;border:1px solid var(--line);flex:none}
+@media (max-width:640px){.job{grid-template-columns:1fr;gap:2px}.badge{width:64px;height:64px}}
 
 /* press */
 .press{display:grid;gap:14px}
@@ -195,7 +197,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <h1>Kabilan KB</h1>
       <p class="role">Robotics Engineer <span>· Autonomous Tech at General Motors, Bangalore</span></p>
       <p class="intro">I build open-source robot learning projects. Most of them start as a robot in Isaac Sim or Isaac Lab, go through teleoperation, RL or VLA fine-tuning, and end up running on a Jetson or a GB10 next to my desk.</p>
-      <p class="intro">I'm an NVIDIA DLI and Omniverse Ambassador, a core contributor to the Jetson AI Lab Research Group, and a Dell Ambassador. NVIDIA has featured my work on its blog twice.</p>
+      <p class="intro">I'm an NVIDIA DLI and Omniverse Ambassador, a core contributor to the Jetson AI Lab Research Group, and a Dell Pro Precision Ambassador. NVIDIA has featured my work on its blog twice.</p>
       <div class="btns">
         <a class="btn primary" href="https://github.com/kabilankb" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a>
         <a class="btn" href="https://www.linkedin.com/in/kabilan-kb" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M0 1.15C0 .52.52 0 1.17 0h13.66C15.48 0 16 .52 16 1.15v13.7c0 .63-.52 1.15-1.17 1.15H1.17C.52 16 0 15.48 0 14.85V1.15zM4.94 13.4V6.17H2.54v7.23h2.4zM3.74 5.18c.84 0 1.36-.55 1.36-1.25-.02-.71-.52-1.25-1.34-1.25-.82 0-1.36.54-1.36 1.25 0 .7.52 1.25 1.33 1.25h.01zm2.53 8.22h2.4V9.37c0-.22.02-.43.08-.59.17-.43.57-.88 1.23-.88.87 0 1.22.66 1.22 1.64v3.86h2.4V9.25c0-2.22-1.18-3.25-2.76-3.25-1.29 0-1.86.71-2.18 1.21v.03h-.02l.02-.03V6.17h-2.4c.03.68 0 7.23 0 7.23z"/></svg>LinkedIn</a>
@@ -442,8 +444,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <div><h3>Core contributor, Research Group</h3><p class="org"><a href="https://www.jetson-ai-lab.com/research/" target="_blank" rel="noopener">Jetson AI Lab</a></p><p class="d">ROS 2 tutorials and the autonomous wheelchair. Cosmos3-Edge SO-101 is listed as a featured community project.</p></div>
       </div>
       <div class="job">
-        <p class="when">Ongoing</p>
-        <div><h3>Dell Ambassador</h3><p class="org">Dell</p><p class="d">Most of my recent Isaac Lab work runs on a Dell Pro Max 16 Plus.</p></div>
+        <p class="when">Nov 2025 – present</p>
+        <div class="badge-row"><div><h3>Pro Precision Ambassador</h3><p class="org"><a href="https://ambassadors.dellhermes.com/kit/kabilan-kb" target="_blank" rel="noopener">Dell Technologies</a> · Bangalore, India · Asia Pacific &amp; Japan</p><p class="d">Most of my recent Isaac Lab work runs on a Dell Pro Max 16 Plus.</p></div><a href="https://ambassadors.dellhermes.com/kit/kabilan-kb" target="_blank" rel="noopener"><img class="badge" src="media/dell-ambassador.webp" alt="Dell Technologies Pro Precision Ambassador badge, Kabilan KB, since November 2025" width="88" height="88" loading="lazy"></a></div>
       </div>
       <div class="job">
         <p class="when">Education</p>
