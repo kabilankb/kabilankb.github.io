@@ -244,6 +244,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <div class="grid">
 
       <article class="card">
+        <div class="thumb"><video src="media/p16.mp4" poster="media/p16.webp" muted loop playsinline preload="none" data-autoplay aria-label="Simulated SO-101 arm sorting red, green, blue and yellow cubes into quadrants of a green box in MuJoCo"></video></div>
+        <div class="body">
+          <p class="date">Nov 2026</p>
+          <h3><a href="https://kabilankb.github.io/so101-gap/" target="_blank" rel="noopener">Graph-as-Policy × SO-101 on Jetson AGX Orin</a></h3>
+          <p class="kind">Typed skill graph, all on one Orin</p>
+          <p class="desc">An SO-101 sorts four coloured cubes into a box in the order you choose, driven by a Graph-as-Policy graph of explicit skills: Grounding DINO + SAM3 perception, a custom 5-DOF IK solver, and a local Nemotron VLM that checks each placement. The MuJoCo sim, executor, perception and VLM all run on the Orin.</p>
+          <ul><li>4/4 cubes sorted on 3 of 5 seeds (262–406 s); 3/4 and 2/4 on the others</li><li>Most failures trace to the VLM misjudging a green cube against the green box</li><li>Nemotron writes a graph from a sentence on-device; "pick the blue cube" ran 1/1 in 77 s</li></ul>
+          <div class="chips"><span>Jetson AGX Orin</span><span>Graph-as-Policy</span><span>LeRobot SO-101</span><span>MuJoCo</span><span>Nemotron</span></div>
+          <div class="links"><a href="https://kabilankb.github.io/so101-gap/" target="_blank" rel="noopener">Project page ↗</a><a href="https://github.com/kabilankb/so101-gap" target="_blank" rel="noopener">GitHub ↗</a></div>
+        </div>
+      </article>
+
+      <article class="card">
         <div class="thumb"><video src="media/p13.mp4" poster="media/p13.webp" muted loop playsinline preload="none" data-autoplay aria-label="Dream-1 drives the two YAM arms in Isaac Lab to put an apple into a bowl"></video><span class="cap">2× speed</span></div>
         <div class="body">
           <p class="date">Nov 2026</p>
